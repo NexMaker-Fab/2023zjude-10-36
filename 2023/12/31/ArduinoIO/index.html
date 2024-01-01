@@ -1,0 +1,693 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/2023zjude-10-36/img/clock1.png">
+  <link rel="icon" href="/2023zjude-10-36/img/clock1.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Chenye Meng">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="1 Potentiometer Control Servo Rotation AngleThis experiment combines a potentiometer with a servo motor, using the potentiometer to control the servo motor. The servo motor rotates to the correspondin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ArduinoIO">
+<meta property="og:url" content="https://nexmaker-fab.github.io/2023zjude-10-36/2023/12/31/ArduinoIO/index.html">
+<meta property="og:site_name" content="10:36">
+<meta property="og:description" content="1 Potentiometer Control Servo Rotation AngleThis experiment combines a potentiometer with a servo motor, using the potentiometer to control the servo motor. The servo motor rotates to the correspondin">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://nexmaker-fab.github.io/2023zjude-10-36/img/Arduino2/%E7%94%B5%E4%BD%8D%E5%99%A8%E5%8E%9F%E7%90%86.png">
+<meta property="og:image" content="https://nexmaker-fab.github.io/2023zjude-10-36/img/Arduino2/%E8%88%B5%E6%9C%BA.jpg">
+<meta property="og:image" content="https://nexmaker-fab.github.io/2023zjude-10-36/img/Arduino2/%E8%88%B5%E6%9C%BA%E8%BF%9E%E6%8E%A5%E5%9B%BE.png">
+<meta property="og:image" content="https://nexmaker-fab.github.io/2023zjude-10-36/img/Arduino2/%E8%88%B5%E6%9C%BA%E6%8E%A5%E7%BA%BF%E5%9B%BE.png">
+<meta property="og:image" content="https://nexmaker-fab.github.io/2023zjude-10-36/img/Arduino2/%E8%88%B5%E6%9C%BA%E5%8A%A8%E5%9B%BE.gif">
+<meta property="og:image" content="https://nexmaker-fab.github.io/2023zjude-10-36/img/Arduino2/%E8%B6%85%E5%A3%B0%E6%B3%A2%E5%8E%9F%E7%90%86%E5%9B%BE.png">
+<meta property="og:image" content="https://nexmaker-fab.github.io/2023zjude-10-36/img/Arduino2/LCD%E5%BC%95%E8%84%9A%E8%AF%B4%E6%98%8E.png">
+<meta property="og:image" content="https://nexmaker-fab.github.io/2023zjude-10-36/img/Arduino2/LCD%E6%8E%A5%E7%BA%BF%E5%9B%BE.png">
+<meta property="og:image" content="https://nexmaker-fab.github.io/2023zjude-10-36/img/Arduino2/%E6%B5%8B%E8%B7%9D%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg">
+<meta property="og:image" content="https://nexmaker-fab.github.io/2023zjude-10-36/img/Arduino2/%E5%85%83%E4%BB%B6%E7%A4%BA%E6%84%8F%E5%9B%BE1.png">
+<meta property="og:image" content="https://nexmaker-fab.github.io/2023zjude-10-36/img/Arduino2/%E5%85%83%E4%BB%B6%E7%A4%BA%E6%84%8F%E5%9B%BE2.png">
+<meta property="og:image" content="https://nexmaker-fab.github.io/2023zjude-10-36/img/Arduino2/%E5%AE%9E%E9%99%85%E6%8E%A5%E7%BA%BF.jpg">
+<meta property="og:image" content="https://nexmaker-fab.github.io/2023zjude-10-36/img/Arduino2/%E7%88%B1%E5%BF%83.jpg">
+<meta property="og:image" content="https://nexmaker-fab.github.io/2023zjude-10-36/img/Arduino2/%E9%97%AA%E7%83%81%E7%88%B1%E5%BF%83.gif">
+<meta property="article:published_time" content="2023-12-30T19:21:52.000Z">
+<meta property="article:modified_time" content="2023-12-30T19:36:58.934Z">
+<meta property="article:author" content="Chenye Meng">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://nexmaker-fab.github.io/2023zjude-10-36/img/Arduino2/%E7%94%B5%E4%BD%8D%E5%99%A8%E5%8E%9F%E7%90%86.png">
+  
+  
+  
+  <title>ArduinoIO - 10:36</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/2023zjude-10-36/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/2023zjude-10-36/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/2023zjude-10-36/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"nexmaker-fab.github.io","root":"/2023zjude-10-36/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/2023zjude-10-36/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/2023zjude-10-36/js/utils.js" ></script>
+  <script  src="/2023zjude-10-36/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/2023zjude-10-36/">
+      <strong>10:36 Team</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/2023zjude-10-36/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/2023zjude-10-36/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/2023zjude-10-36/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/2023zjude-10-36/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/2023zjude-10-36/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="ArduinoIO"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-12-31 03:21" pubdate>
+          December 31, 2023 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          10k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          87 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">ArduinoIO</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="1-Potentiometer-Control-Servo-Rotation-Angle"><a href="#1-Potentiometer-Control-Servo-Rotation-Angle" class="headerlink" title="1 Potentiometer Control Servo Rotation Angle"></a>1 Potentiometer Control Servo Rotation Angle</h1><p>This experiment combines a potentiometer with a servo motor, using the potentiometer to control the servo motor. The servo motor rotates to the corresponding angle as the potentiometer knob is turned.</p>
+<h2 id="Hardware-Connection"><a href="#Hardware-Connection" class="headerlink" title="Hardware Connection"></a>Hardware Connection</h2><ol>
+<li>Potentiometer:</li>
+</ol>
+<p>The potentiometer is a non-polar device and a type of variable resistor. It has three terminals, and by rotating the knob, the position of terminal 2 changes, which in turn changes the resistance value. Terminal 1 is connected to the 5V pin of the development board, terminal 3 is connected to the GND pin, and terminal 2 is connected to an analog input pin.</p>
+<p>The connection of the potentiometer’s three terminals is shown below:<br><img src="/2023zjude-10-36/img/Arduino2/%E7%94%B5%E4%BD%8D%E5%99%A8%E5%8E%9F%E7%90%86.png" srcset="/2023zjude-10-36/img/loading.gif" lazyload></p>
+<ol start="2">
+<li>Servo Motor</li>
+</ol>
+<p>(1) The SG90 servo motor is a position (angle) servo driver, suitable for control systems that require continuous and controllable angle changes. In robot mechatronic control systems, servo motor performance is an important influencing factor. Servo motors can be used as basic output actuators in micro-electromechanical systems (MEMS) and aero modeling, and their simple control and output make it easy to interface with microcontroller systems.<br><img src="/2023zjude-10-36/img/Arduino2/%E8%88%B5%E6%9C%BA.jpg" srcset="/2023zjude-10-36/img/loading.gif" lazyload></p>
+<p>(2) Principle of the Servo Motor: The control signal enters the signal modulation chip from the receiver’s channel, obtaining a DC bias voltage. It has an internal reference circuit that generates a reference signal with a period of 20ms and a width of 1.5ms. The obtained DC bias voltage is compared with the voltage of the potentiometer to obtain the voltage difference output. Finally, the polarity of the voltage difference is output to the motor driver chip to determine the motor’s forward or reverse rotation. When the motor speed is constant, the potentiometer rotates by cascading reduction gears, causing the voltage difference to be zero and the motor to stop rotating. Of course, we don’t need to understand its specific working principle, knowing its control principle is enough. Just like using a transistor, knowing that it can be used as a switch or amplifier, we don’t need to consider how the electrons flow inside the transistor.<br>The servo motor wiring diagram is shown in the following image:<br><img src="/2023zjude-10-36/img/Arduino2/%E8%88%B5%E6%9C%BA%E8%BF%9E%E6%8E%A5%E5%9B%BE.png" srcset="/2023zjude-10-36/img/loading.gif" lazyload></p>
+<h2 id="Hardware-Connection-1"><a href="#Hardware-Connection-1" class="headerlink" title="Hardware Connection"></a>Hardware Connection</h2><p>For this experiment, we used an Arduino Uno, a potentiometer, a servo motor, and several wires. The circuit connection diagram is shown below:<br><img src="/2023zjude-10-36/img/Arduino2/%E8%88%B5%E6%9C%BA%E6%8E%A5%E7%BA%BF%E5%9B%BE.png" srcset="/2023zjude-10-36/img/loading.gif" lazyload><br>The demonstration of this experiment is as follows：<br><img src="/2023zjude-10-36/img/Arduino2/%E8%88%B5%E6%9C%BA%E5%8A%A8%E5%9B%BE.gif" srcset="/2023zjude-10-36/img/loading.gif" lazyload></p>
+<h2 id="Arduino-Code"><a href="#Arduino-Code" class="headerlink" title="Arduino Code"></a>Arduino Code</h2><p>The code for this experiment is as follows:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#include &lt;Servo.h&gt;           // 声明调用Servo.h库</span><br>Servo myservo;               // 创建一个舵机对象<br> <br>int potpin = 0;              // 连接到模拟口0               <br>int val;                     //变量val用来存储从模拟口0读到的值<br> <br>void <span class="hljs-function"><span class="hljs-title">setup</span></span>() &#123; <br>      myservo.attach(11);          // 将引脚11上的舵机与声明的舵机对象连接起来<br>&#125; <br> <br>void <span class="hljs-function"><span class="hljs-title">loop</span></span>() &#123; <br>       val = analogRead(potpin);         //从模拟口0读值，并通过val记录          <br>       val = map(val, 0, 1023, 0, 179);  //通过map函数进行数值转换    <br>       myservo.write(val);               // 给舵机写入角度  <br>       delay(20);                        // 延时20ms让舵机转到指定位置  <br>&#125;<br></code></pre></td></tr></table></figure>
+<h1 id="2-Displaying-Distance-Data-from-Ultrasonic-Sensor-on-LCD-Screen"><a href="#2-Displaying-Distance-Data-from-Ultrasonic-Sensor-on-LCD-Screen" class="headerlink" title="2 Displaying Distance Data from Ultrasonic Sensor on LCD Screen"></a>2 Displaying Distance Data from Ultrasonic Sensor on LCD Screen</h1><p>This experiment combines an ultrasonic sensor with an LCD screen to measure the distance from the module to obstacles, and display this distance on the LCD screen.</p>
+<h2 id="Hardware-Connection-2"><a href="#Hardware-Connection-2" class="headerlink" title="Hardware Connection"></a>Hardware Connection</h2><ol>
+<li>Ultrasonic Sensor</li>
+</ol>
+<p>(1) The principle of ultrasonic distance measurement is based on the time difference between the transmitter emitting ultrasonic waves and the receiver receiving them, similar to the principle of radar ranging. The ultrasonic transmitter emits ultrasonic waves in a certain direction and starts timing at the moment of emission. The ultrasonic waves propagate through the air and immediately return when they encounter an obstacle. The ultrasonic receiver stops timing when it receives the reflected wave.</p>
+<p>(2) Measurement principle:<br>a. Using a timer, when the echo pin of our ultrasonic module transitions from low to high, we start the timer.<br>b. When the echo pin of our ultrasonic module transitions back to low, it indicates the end, i.e., stop the timer.<br>c. Applying the formula: Distance &#x3D; (Speed (340m&#x2F;s) * Time) &#x2F; 2<br>The ultrasonic sensor pinout is shown in the following image:<br><img src="/2023zjude-10-36/img/Arduino2/%E8%B6%85%E5%A3%B0%E6%B3%A2%E5%8E%9F%E7%90%86%E5%9B%BE.png" srcset="/2023zjude-10-36/img/loading.gif" lazyload></p>
+<ol start="2">
+<li>LCD Screen</li>
+</ol>
+<p>The LCD screen is one of the simplest devices used to display the output of Arduino projects. There are two different types of LCDs: graphic and character dot matrix LCDs. We will be using a character LCD here. The pinout of the LCD screen is as follows:<br><img src="/2023zjude-10-36/img/Arduino2/LCD%E5%BC%95%E8%84%9A%E8%AF%B4%E6%98%8E.png" srcset="/2023zjude-10-36/img/loading.gif" lazyload></p>
+<ol start="3">
+<li>For this experiment, we will be using an Arduino Uno, an LCD screen, an ultrasonic sensor, and several wires. The circuit connection diagram is shown below:<br><img src="/2023zjude-10-36/img/Arduino2/LCD%E6%8E%A5%E7%BA%BF%E5%9B%BE.png" srcset="/2023zjude-10-36/img/loading.gif" lazyload><br>The demonstration of this experiment is as follows：<br><img src="/2023zjude-10-36/img/Arduino2/%E6%B5%8B%E8%B7%9D%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg" srcset="/2023zjude-10-36/img/loading.gif" lazyload></li>
+</ol>
+<h2 id="Arduino-Code-1"><a href="#Arduino-Code-1" class="headerlink" title="Arduino Code"></a>Arduino Code</h2><p>The code for this experiment is as follows:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#include &lt;LiquidCrystal.h&gt;</span><br><span class="hljs-comment">#define Trig 8 </span><br><span class="hljs-comment">#define Echo 9 </span><br><span class="hljs-built_in">float</span> cm; <br><span class="hljs-built_in">float</span> temp;<br>LiquidCrystal lcd(12,11,5,4,3,2);       <br>int val = 0;        <br><br>void <span class="hljs-function"><span class="hljs-title">setup</span></span>()<br>&#123;<br>  lcd.begin(16,2);    <br>  lcd.print(<span class="hljs-string">&quot;Welcome to use!&quot;</span>);   <br>  delay(1000);       <br>  lcd.clear();      <br>  Serial.begin(9600);<br>  pinMode(Trig, OUTPUT);<br>  pinMode(Echo, INPUT);<br>&#125;<br> <br>void <span class="hljs-function"><span class="hljs-title">loop</span></span>()<br>&#123;<br>  digitalWrite(Trig, LOW); <br>  delayMicroseconds(2);    <br>  digitalWrite(Trig,HIGH); <br>  delayMicroseconds(10);    <br>  digitalWrite(Trig, LOW); <br>  temp = <span class="hljs-built_in">float</span>(pulseIn(Echo, HIGH)); <br>  cm = (temp * 17 )/1000; <br>  <br>  lcd.setCursor(0,0);       <br>  lcd.print(<span class="hljs-string">&quot;Now Distance：&quot;</span>); <br>  lcd.setCursor(2,1); <br>  lcd.print(cm);      <br>  lcd.print(<span class="hljs-string">&quot;cm&quot;</span>);  <br>  delay(1000);              <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="3-Controlling-8x8-Common-Cathode-Red-LED-Matrix-with-Arduino"><a href="#3-Controlling-8x8-Common-Cathode-Red-LED-Matrix-with-Arduino" class="headerlink" title="3 Controlling 8x8 Common Cathode Red LED Matrix with Arduino"></a>3 Controlling 8x8 Common Cathode Red LED Matrix with Arduino</h1><p>In this experiment, an 8x8 common cathode red LED matrix is used. The first part of the experiment involves displaying a small heart shape on the screen using code. The second part displays text and a blinking heart on the screen.</p>
+<h2 id="Hardware-Connection-3"><a href="#Hardware-Connection-3" class="headerlink" title="Hardware Connection"></a>Hardware Connection</h2><ol>
+<li>8x8 Common Cathode Red LED Matrix</li>
+</ol>
+<p>The red LED matrix has a total of 16 pins. These pins represent 8 columns and 8 rows. By specifying which column and row pins have a high or low voltage level, you can control which LEDs are lit up. For example, to light up the top-left LED, you need to set the column pin 13 to a high voltage level and the row pin 9 to a low voltage level. You can use a multimeter to test the circuit continuity and verify the LED lighting.</p>
+<p>The schematic diagram and circuit connection of the components are shown in the following figures:<br><img src="/2023zjude-10-36/img/Arduino2/%E5%85%83%E4%BB%B6%E7%A4%BA%E6%84%8F%E5%9B%BE1.png" srcset="/2023zjude-10-36/img/loading.gif" lazyload><br><img src="/2023zjude-10-36/img/Arduino2/%E5%85%83%E4%BB%B6%E7%A4%BA%E6%84%8F%E5%9B%BE2.png" srcset="/2023zjude-10-36/img/loading.gif" lazyload></p>
+<ol start="2">
+<li>For this experiment, you will need an Arduino Uno, an 8x8 common cathode red LED matrix, a breadboard, and several jumper wires. The hardware connection is shown in the following figure (the component is not available in Tinkercad):<br><img src="/2023zjude-10-36/img/Arduino2/%E5%AE%9E%E9%99%85%E6%8E%A5%E7%BA%BF.jpg" srcset="/2023zjude-10-36/img/loading.gif" lazyload></li>
+</ol>
+<h2 id="Arduino-Code-2"><a href="#Arduino-Code-2" class="headerlink" title="Arduino Code"></a>Arduino Code</h2><ol>
+<li>The first experiment is to light up a heart on the screen. The actual effect is shown below:</li>
+</ol>
+<p>The code for this experiment is shown below:<br><img src="/2023zjude-10-36/img/Arduino2/%E7%88%B1%E5%BF%83.jpg" srcset="/2023zjude-10-36/img/loading.gif" lazyload></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs bash">int col[8] = &#123;7,2,A0,4,12,A1,11,A3&#125;;<br>int row[8] = &#123;3,A5,A4,6,A2,5,1,0&#125;; <br>int appear[8][8] = &#123;&#123;0,0,0,0,0,0,0,0&#125;,//爱心<br>                    &#123;0,1,0,0,0,0,1,0&#125;, <br>                    &#123;1,0,1,0,0,1,0,1&#125;,<br>                    &#123;1,0,0,1,1,0,0,1&#125;,<br>                    &#123;0,1,0,0,0,0,1,0&#125;,<br>                    &#123;0,0,1,0,0,1,0,0&#125;,<br>                    &#123;0,0,0,1,1,0,0,0&#125;,<br>                    &#123;0,0,0,0,0,0,0,0&#125;&#125;;                         <br>void <span class="hljs-function"><span class="hljs-title">setup</span></span>() &#123;<br>  <span class="hljs-keyword">for</span>(int i = 0;i &lt; 8;i++)&#123;<br>    pinMode(row[i],OUTPUT);<br>    pinMode(col[i],OUTPUT);<br>    digitalWrite(row[i],LOW);//把行设为高电压，把列设为低电压，避免接通就亮。<br>    digitalWrite(col[i],HIGH);<br>  &#125;<br>&#125;<br>void <span class="hljs-function"><span class="hljs-title">loop</span></span>() &#123;<br>      draw();<br>&#125;<br><br>void <span class="hljs-function"><span class="hljs-title">draw</span></span>()&#123;<br>  <span class="hljs-keyword">for</span>(int i = 0;i &lt; 8;i++)&#123;<br>    <span class="hljs-keyword">for</span>(int j = 0;j &lt; 8;j++)&#123; <br>      <span class="hljs-keyword">if</span>(appear[i][j] == 1)&#123;//逐行逐列检查是否等于1。<br>        digitalWrite(col[i],LOW);//从数组为1的位置开始点亮<br>        digitalWrite(row[j],HIGH);<br>        delay(1);<br>        digitalWrite(row[j],LOW);//把数组为1后面位置都LED熄灭<br>        digitalWrite(col[i],HIGH);<br>        &#125;<br>      &#125; <br>   &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>The second experiment is to display the text “祝大家节日快乐” (Wishing everyone a happy holiday) on the screen, along with a blinking heart. The actual effect is shown below:<br><img src="/2023zjude-10-36/img/Arduino2/%E9%97%AA%E7%83%81%E7%88%B1%E5%BF%83.gif" srcset="/2023zjude-10-36/img/loading.gif" lazyload></li>
+</ol>
+<p>The code for this experiment is shown below:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br></pre></td><td class="code"><pre><code class="hljs bash">int col[8] = &#123;7,2,A0,4,12,A1,11,A3&#125;;<br>int row[8] = &#123;3,A5,A4,6,A2,5,1,0&#125;; <br>unsigned char zhu[8][8] =      //祝  <br>&#123;  <br>  1,0,0,1,1,1,1,1,  <br>  0,1,0,1,0,0,0,1,  <br>  1,1,1,1,1,1,1,1,  <br>  0,1,1,0,1,0,1,0,  <br>  1,1,0,0,1,0,1,0,  <br>  0,1,0,0,1,0,1,0,  <br>  0,1,0,0,1,0,1,0,  <br>  0,1,0,1,0,0,1,1,  <br>&#125;;<br>unsigned char da[8][8] =      //大  <br>&#123;  <br>  0,0,0,1,0,0,0,0,  <br>  0,0,0,1,0,0,0,0,  <br>  1,1,1,1,1,1,1,1,  <br>  0,0,0,1,0,0,0,0,  <br>  0,0,0,1,0,0,0,0,  <br>  0,0,1,0,1,0,0,0,  <br>  0,1,0,0,0,1,0,0,  <br>  1,0,0,0,0,0,1,1,  <br>&#125;;<br>unsigned char jia[8][8] =      //家<br>&#123;  <br>  0,0,0,1,0,0,0,0,  <br>  1,1,1,1,1,1,1,1,  <br>  1,0,1,1,1,1,0,1,  <br>  0,0,1,1,0,0,1,0,  <br>  1,1,1,1,1,1,0,0,  <br>  0,1,1,1,1,0,0,0,  <br>  1,1,0,1,0,1,0,0,  <br>  0,0,1,1,0,0,1,1,  <br>&#125;;<br>unsigned char jie[8][8] =      //节<br>&#123;  <br>  0,0,1,0,0,1,0,0,  <br>  0,1,1,1,1,1,1,0,  <br>  0,0,1,0,0,1,0,0,  <br>  0,0,0,0,0,0,0,0,  <br>  0,1,1,1,1,1,1,0,  <br>  0,0,0,1,0,0,1,0,  <br>  0,0,0,1,0,1,1,0,  <br>  0,0,0,1,0,0,0,0,  <br>&#125;;<br>unsigned char ri[8][8] =      //日<br>&#123;  <br>  0,0,0,0,0,0,0,0,  <br>  0,1,1,1,1,1,1,0,  <br>  0,1,0,0,0,0,1,0,  <br>  0,1,1,1,1,1,1,0,  <br>  0,1,0,0,0,0,1,0,  <br>  0,1,0,0,0,0,1,0,  <br>  0,1,1,1,1,1,1,0,  <br>  0,0,0,0,0,0,0,0,  <br>&#125;;<br>unsigned char kuai[8][8] =      //快  <br>&#123;  <br>  0,1,0,0,1,0,0,0,  <br>  0,1,0,0,1,0,0,0,  <br>  1,1,0,1,1,1,1,0,  <br>  0,1,1,0,1,0,1,0,  <br>  0,1,1,1,1,1,1,1,  <br>  0,1,0,0,1,0,0,0,  <br>  0,1,0,1,0,1,0,0,  <br>  0,1,1,0,0,0,1,1,   <br>&#125;;<br>unsigned char le[8][8] =      //乐  <br>&#123;  <br>  0,0,0,0,0,0,0,1,  <br>  0,1,1,1,1,1,1,0,  <br>  0,1,0,0,1,0,0,0,  <br>  0,1,1,1,1,1,1,1,  <br>  0,0,0,0,1,0,0,0,  <br>  0,0,1,0,1,0,1,0,  <br>  0,1,0,0,1,0,0,1,  <br>  0,0,0,1,1,0,0,0,  <br>&#125;;<br>unsigned char ximie[8][8] =      //全部熄灭<br>&#123;  <br>  0,0,0,0,0,0,0,0,  <br>  0,0,0,0,0,0,0,0,  <br>  0,0,0,0,0,0,0,0,  <br>  0,0,0,0,0,0,0,0,  <br>  0,0,0,0,0,0,0,0,  <br>  0,0,0,0,0,0,0,0,  <br>  0,0,0,0,0,0,0,0,  <br>  0,0,0,0,0,0,0,0,  <br>&#125;;<br><br>unsigned char biglove[8][8] =       //大“心型”的数据  <br>&#123;  <br>  0,0,0,0,0,0,0,0,  <br>  0,1,1,0,0,1,1,0,  <br>  1,1,1,1,1,1,1,1,  <br>  1,1,1,1,1,1,1,1,  <br>  1,1,1,1,1,1,1,1,  <br>  0,1,1,1,1,1,1,0,  <br>  0,0,1,1,1,1,0,0,  <br>  0,0,0,1,1,0,0,0,  <br>&#125;;  <br>  <br>unsigned char smalllove[8][8] =      //小“心型”的数据  <br>&#123;  <br>  0,0,0,0,0,0,0,0,  <br>  0,0,0,0,0,0,0,0,  <br>  0,0,1,0,0,1,0,0,  <br>  0,1,1,1,1,1,1,0,  <br>  0,1,1,1,1,1,1,0,  <br>  0,0,1,1,1,1,0,0,  <br>  0,0,0,1,1,0,0,0,  <br>  0,0,0,0,0,0,0,0,  <br>&#125;;  <br>  <br>void <span class="hljs-function"><span class="hljs-title">setup</span></span>() &#123;<br>  <span class="hljs-keyword">for</span>(int i = 0;i &lt; 8;i++)&#123;<br>    pinMode(row[i],OUTPUT);<br>    pinMode(col[i],OUTPUT);<br>    digitalWrite(row[i],LOW);//把行设为高电压，把列设为低电压，避免接通就亮。<br>    digitalWrite(col[i],HIGH);<br>  &#125;<br><br>&#125;<br><br>void <span class="hljs-function"><span class="hljs-title">Clear</span></span>()&#123;<br>   <span class="hljs-keyword">for</span>(int i = 0;i &lt; 8;i++)&#123;<br>    digitalWrite(row[i],LOW);//把行设为高电压，把列设为低电压，避免接通就亮。<br>    digitalWrite(col[i],HIGH);<br> &#125;<br>&#125;<br>void Display(unsigned char dat[8][8])   //显示函数  <br>&#123;  <br>  <span class="hljs-keyword">for</span>(int c = 0; c&lt;8;c++)  <br>  &#123;  <br>    digitalWrite(col[c],LOW);//选通第行  <br>  <br>    //循环  <br>    <span class="hljs-keyword">for</span>(int r = 0;r&lt;8;r++)  <br>    &#123;  <br>      digitalWrite(row[r],dat[c][r]);  <br>    &#125;  <br>    delay(1);  <br>    Clear();  //清空显示去除余晖  <br>  &#125; <br>&#125; <br>void <span class="hljs-function"><span class="hljs-title">BlessYou</span></span>()<br>&#123;<br>  <span class="hljs-keyword">for</span>(int i = 0 ; i &lt; 50 ; i++)         //循环显示50次  <br>  &#123;     <br>    Display(zhu);                 //显示 祝  <br>  &#125;  <br>  <span class="hljs-keyword">for</span>(int i = 0 ; i &lt; 50 ; i++)         //循环显示50次  <br>  &#123;     <br>    Display(da);                 //显示 大  <br>  &#125;  <br>  <span class="hljs-keyword">for</span>(int i = 0 ; i &lt; 50 ; i++)         //循环显示50次  <br>  &#123;     <br>    Display(jia);                 //显示 家  <br>  &#125;  <br>  <span class="hljs-keyword">for</span>(int i = 0 ; i &lt; 50 ; i++)         //循环显示50次  <br>  &#123;     <br>    Display(jie);                 //显示 节  <br>  &#125;  <br>  <span class="hljs-keyword">for</span>(int i = 0 ; i &lt; 50 ; i++)         //循环显示50次  <br>  &#123;     <br>    Display(ri);                 //显示 日  <br>  &#125;  <br>  <span class="hljs-keyword">for</span>(int i = 0 ; i &lt; 50 ; i++)         //循环显示50次  <br>  &#123;     <br>    Display(kuai);                 //显示 快  <br>  &#125;  <br>  <span class="hljs-keyword">for</span>(int i = 0 ; i &lt; 50 ; i++)         //循环显示50次  <br>  &#123;     <br>    Display(le);                 //显示 乐  <br>  &#125;<br>  <span class="hljs-keyword">for</span>(int i = 0 ; i &lt; 30 ; i++)         //循环显示30次  <br>  &#123;     <br>    Display(biglove);                 //显示 大心<br>  &#125;<br>  <span class="hljs-keyword">for</span>(int i = 0 ; i &lt; 30 ; i++)         //循环显示30次  <br>  &#123;     <br>    Display(smalllove);                 //显示 小心  <br>  &#125;<br>  <span class="hljs-keyword">for</span>(int i = 0 ; i &lt; 30 ; i++)         //循环显示30次  <br>  &#123;     <br>    Display(biglove);                 //显示 大心   <br>  &#125;<br>  <span class="hljs-keyword">for</span>(int i = 0 ; i &lt; 30 ; i++)         //循环显示30次  <br>  &#123;     <br>    Display(smalllove);                 //显示 小心  <br>  &#125;  <br>  <span class="hljs-keyword">for</span>(int i = 0 ; i &lt; 200 ; i++)         //循环显示200次  <br>  &#123;     <br>    Display(ximie);                 //显示 熄灭200次  <br>  &#125; <br>&#125;<br><br>void <span class="hljs-function"><span class="hljs-title">loop</span></span>() &#123;<br>  // put your main code here, to run repeatedly:<br>  BlessYou();<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>Reference article link for this section：</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_37738838/article/details/121683700">https://blog.csdn.net/m0_37738838/article/details/121683700</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/2023zjude-10-36/categories/Arduino/" class="category-chain-item">Arduino</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>ArduinoIO</div>
+      <div>https://nexmaker-fab.github.io/2023zjude-10-36/2023/12/31/ArduinoIO/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Chenye Meng</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>December 31, 2023</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023zjude-10-36/2023/12/31/arduinoFinal/" title="Open Source Projects Related to Final Project">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Open Source Projects Related to Final Project</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023zjude-10-36/2023/12/31/ArduinoIntro/" title="ArduinoIntro">
+                        <span class="hidden-mobile">ArduinoIntro</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/2023zjude-10-36/js/events.js" ></script>
+<script  src="/2023zjude-10-36/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/2023zjude-10-36/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/2023zjude-10-36/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/2023zjude-10-36/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

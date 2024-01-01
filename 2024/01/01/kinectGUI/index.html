@@ -1,0 +1,665 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/2023zjude-10-36/img/clock1.png">
+  <link rel="icon" href="/2023zjude-10-36/img/clock1.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Chenye Meng">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="I. Experiment PreparationExperimental Tools: Processing 3.5 Experimental Equipment: Kinect v2.0 Dependencies: ControlP5, Kinect v2 for processing, PixelFlow II. Experiment Steps Use Processing to buil">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Processing with Kinect&amp;GUI">
+<meta property="og:url" content="https://nexmaker-fab.github.io/2023zjude-10-36/2024/01/01/kinectGUI/index.html">
+<meta property="og:site_name" content="10:36">
+<meta property="og:description" content="I. Experiment PreparationExperimental Tools: Processing 3.5 Experimental Equipment: Kinect v2.0 Dependencies: ControlP5, Kinect v2 for processing, PixelFlow II. Experiment Steps Use Processing to buil">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://nexmaker-fab.github.io/2023zjude-10-36/img/processing3/1.png">
+<meta property="og:image" content="https://nexmaker-fab.github.io/2023zjude-10-36/img/processing3/2.png">
+<meta property="og:image" content="https://nexmaker-fab.github.io/2023zjude-10-36/img/processing3/3.png">
+<meta property="og:image" content="https://nexmaker-fab.github.io/2023zjude-10-36/img/processing3/4.png">
+<meta property="og:image" content="https://nexmaker-fab.github.io/2023zjude-10-36/img/processing3/5.png">
+<meta property="og:image" content="https://nexmaker-fab.github.io/2023zjude-10-36/img/processing3/6.png">
+<meta property="og:image" content="https://nexmaker-fab.github.io/2023zjude-10-36/img/processing3/7.png">
+<meta property="og:image" content="https://nexmaker-fab.github.io/2023zjude-10-36/img/processing3/8.png">
+<meta property="article:published_time" content="2024-01-01T14:21:57.000Z">
+<meta property="article:modified_time" content="2024-01-01T14:53:31.781Z">
+<meta property="article:author" content="Chenye Meng">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://nexmaker-fab.github.io/2023zjude-10-36/img/processing3/1.png">
+  
+  
+  
+  <title>Processing with Kinect&amp;GUI - 10:36</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/2023zjude-10-36/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/2023zjude-10-36/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/2023zjude-10-36/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"nexmaker-fab.github.io","root":"/2023zjude-10-36/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/2023zjude-10-36/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/2023zjude-10-36/js/utils.js" ></script>
+  <script  src="/2023zjude-10-36/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/2023zjude-10-36/">
+      <strong>10:36 Team</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/2023zjude-10-36/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/2023zjude-10-36/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/2023zjude-10-36/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/2023zjude-10-36/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/2023zjude-10-36/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Processing with Kinect&amp;GUI"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-01-01 22:21" pubdate>
+          January 1, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          29k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          244 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Processing with Kinect&amp;GUI</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="I-Experiment-Preparation"><a href="#I-Experiment-Preparation" class="headerlink" title="I. Experiment Preparation"></a>I. Experiment Preparation</h1><p>Experimental Tools: Processing 3.5</p>
+<p>Experimental Equipment: Kinect v2.0</p>
+<p>Dependencies: ControlP5, Kinect v2 for processing, PixelFlow</p>
+<h1 id="II-Experiment-Steps"><a href="#II-Experiment-Steps" class="headerlink" title="II. Experiment Steps"></a>II. Experiment Steps</h1><ol>
+<li><p>Use Processing to build an example system, to simulate particle generation and disturbance.</p>
+</li>
+<li><p>Implement a particle interaction mechanism via the mouse.</p>
+</li>
+<li><p>Recognize hand status through Kinect.</p>
+</li>
+<li><p>Design interactions based on the information recognized by Kinect.</p>
+</li>
+</ol>
+<h1 id="III-Relevant-Introduction"><a href="#III-Relevant-Introduction" class="headerlink" title="III. Relevant Introduction"></a>III. Relevant Introduction</h1><p>Processing is a forward-looking, emerging computer language with a revolutionary concept: introducing programming languages in the context of electronic arts and introducing electronic arts concepts to programmers. It is an extension of the Java language and supports many of Java’s existing frameworks. However, it is much simpler in syntax and features many thoughtful and user-friendly designs. Processing can be used on operating systems such as Windows, MAC OS X, MAC OS 9, Linux, etc. The latest version is Processing 3.5.4. Works completed with Processing can function on a personal local machine or be exported to the web in the form of Java Applets.</p>
+<p>Although Graphical User Interfaces (GUIs) became mainstream over twenty years ago, the teaching of basic programming languages still primarily uses command-line interfaces to this day. Why should learning a programming language be so dull? The human brain is naturally good at spatial recognition, and GUIs take advantage of this strength. Coupled with their ability to provide various real-time and vivid visual feedback, GUIs can significantly shorten the learning curve and help understand abstract logical principles. For example, a pixel on a computer screen is a visual representation of the value of a variable. Processing simplifies Java syntax and “sensualizes” its computational results, allowing users to quickly enjoy multimedia works with both sound and light.</p>
+<p>The source code of Processing is open, much like the popular Linux operating system, Mozilla browser, or the Perl language. Users can freely tailor the most suitable usage pattern according to their needs. The applications of Processing are very diverse, and they all adhere to open-source rules. This design greatly increases the interaction and learning efficiency of the entire community.</p>
+<p>Kinect is a body-sensing peripheral for the XBOX360 that Microsoft officially announced at the E3 Expo on June 2, 2009. Kinect completely revolutionizes the single-mode game operation and thoroughly embodies the concept of human-computer interaction.</p>
+<p>It is a 3D motion-sensing camera (development codename “Project Natal”), integrating real-time motion capture, image recognition, microphone input, voice recognition, and community interaction functionalities. Players can use this technology to drive in games, interact with other players, and share pictures and information with other Xbox players through the internet.</p>
+<p>Microsoft’s Kinect does not require any controller; it relies on a camera to capture the player’s movements in three-dimensional space. Microsoft points out that it will make the system easier to operate to attract the general public.</p>
+<h1 id="IV-Experiment-Process"><a href="#IV-Experiment-Process" class="headerlink" title="IV. Experiment Process"></a>IV. Experiment Process</h1><p>Use Processing to build an example system to simulate the generation and disturbance of particles.<br><img src="/2023zjude-10-36/img/processing3/1.png" srcset="/2023zjude-10-36/img/loading.gif" lazyload><br>Adjustments to the particle parameters in the interface can be made through the UI.<br><img src="/2023zjude-10-36/img/processing3/2.png" srcset="/2023zjude-10-36/img/loading.gif" lazyload><br>Control the lifecycle of the disappearing particles.<br><img src="/2023zjude-10-36/img/processing3/3.png" srcset="/2023zjude-10-36/img/loading.gif" lazyload><br>Design Interaction:</p>
+<p>Left-click to disturb particles</p>
+<p>Right-click to generate particles</p>
+<p>Middle-click to create a cluster of particles</p>
+<p>The code of interaction design is as follows:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><code class="hljs Java"><br><span class="hljs-keyword">if</span>(mouse_input &amp;&amp; mouseButton == LEFT)&#123;<br>  radius = <span class="hljs-number">15</span>;<br>  vscale = <span class="hljs-number">15</span>;<br>  px     = mouseX;<br>  py     = height-mouseY;<br>  vx     = (mouseX - pmouseX) * +vscale;<br>  vy     = (mouseY - pmouseY) * -vscale;<br><br><br><br>  fluid.addDensity (px, py, radius, <span class="hljs-number">0.25f</span>, <span class="hljs-number">0.0f</span>, <span class="hljs-number">0.1f</span>, <span class="hljs-number">1.0f</span>);<br>  fluid.addVelocity(px, py, radius, vx, vy);<br>  particles.spawn(fluid, px, py, radius*<span class="hljs-number">2</span>, <span class="hljs-number">300</span>);<br>&#125;    <br><br><span class="hljs-comment">// add impulse: density + velocity, particles</span><br><span class="hljs-keyword">if</span>(mouse_input &amp;&amp; mouseButton == LEFT)&#123;<br>  radius = <span class="hljs-number">15</span>;<br>  vscale = <span class="hljs-number">15</span>;<br>  px     = mouseX;<br>  py     = height-mouseY;<br>  vx     = (mouseX - pmouseX) * +vscale;<br>  vy     = (mouseY - pmouseY) * -vscale;<br>  fluid.addDensity (px, py, radius, <span class="hljs-number">0.25f</span>, <span class="hljs-number">0.0f</span>, <span class="hljs-number">0.1f</span>, <span class="hljs-number">1.0f</span>);<br>  fluid.addVelocity(px, py, radius, vx, vy);<br>  particles.spawn(fluid, px, py, radius*<span class="hljs-number">2</span>, <span class="hljs-number">300</span>);<br>&#125;<br><br><span class="hljs-comment">// add impulse: density + temperature, particles</span><br><span class="hljs-keyword">if</span>(mouse_input &amp;&amp; mouseButton == CENTER)&#123;<br>  radius = <span class="hljs-number">15</span>;<br>  vscale = <span class="hljs-number">15</span>;<br>  px     = mouseX;<br>  py     = height-mouseY;<br>  temperature = <span class="hljs-number">2f</span>;<br>  fluid.addDensity(px, py, radius, <span class="hljs-number">0.25f</span>, <span class="hljs-number">0.0f</span>, <span class="hljs-number">0.1f</span>, <span class="hljs-number">1.0f</span>);<br>  fluid.addTemperature(px, py, radius, temperature);<br>  particles.spawn(fluid, px, py, radius, <span class="hljs-number">100</span>);<br>&#125;<br><br><span class="hljs-comment">// particles</span><br><span class="hljs-keyword">if</span>(mouse_input &amp;&amp; mouseButton == RIGHT)&#123;<br>  px     = mouseX;<br>  py     = height - <span class="hljs-number">1</span> - mouseY; <span class="hljs-comment">// invert</span><br>  radius = <span class="hljs-number">50</span>;<br>  particles.spawn(fluid, px, py, radius, <span class="hljs-number">300</span>);<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<p><img src="/2023zjude-10-36/img/processing3/4.png" srcset="/2023zjude-10-36/img/loading.gif" lazyload><br><img src="/2023zjude-10-36/img/processing3/5.png" srcset="/2023zjude-10-36/img/loading.gif" lazyload><br><img src="/2023zjude-10-36/img/processing3/6.png" srcset="/2023zjude-10-36/img/loading.gif" lazyload></p>
+<p>Test Kinect data.<br><img src="/2023zjude-10-36/img/processing3/7.png" srcset="/2023zjude-10-36/img/loading.gif" lazyload><br>Implement hand interaction by reading Kinect skeletal data to obtain hand information and status.</p>
+<p>Spread hand to disturb particles.</p>
+<p>Close hand to generate particles.</p>
+<p>The code of interaction design is as follows.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-keyword">switch</span>(hstate)&#123;<br>  <span class="hljs-keyword">case</span> KinectPV2.HandState_Closed :<br>    fluid.addDensity(tempX, tempY, radius, <span class="hljs-number">0.2f</span>, <span class="hljs-number">0.3f</span>, <span class="hljs-number">0.5f</span>, <span class="hljs-number">1.0f</span>);<br>    fluid.addTemperature(tempX, tempY, radius, temperature);<br>    particles.spawn(fluid, tempX, tempY, radius, <span class="hljs-number">100</span>);<br>    <span class="hljs-keyword">break</span>;<br>  <span class="hljs-keyword">case</span> KinectPV2.HandState_Open :<br>    radius = <span class="hljs-number">15</span>;<br>    vscale = <span class="hljs-number">15</span>;<br>    vx     = +<span class="hljs-number">3</span>*vscale;<br>    vy     = -<span class="hljs-number">3</span>*vscale;<br>    px     = tempX;<br>    py     = tempY;<br>    fluid.addDensity (px, py, radius, <span class="hljs-number">0.25f</span>, <span class="hljs-number">0.0f</span>, <span class="hljs-number">0.1f</span>, <span class="hljs-number">1.0f</span>);<br>    fluid.addVelocity(px, py, radius, vx, vy);<br>    particles.spawn(fluid, px, py, radius*<span class="hljs-number">2</span>, <span class="hljs-number">300</span>);<br>  <span class="hljs-keyword">break</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><img src="/2023zjude-10-36/img/processing3/8.png" srcset="/2023zjude-10-36/img/loading.gif" lazyload></p>
+<h1 id="V-Experiment-Experience"><a href="#V-Experiment-Experience" class="headerlink" title="V. Experiment Experience"></a>V. Experiment Experience</h1><p>This experiment utilized Processing to implement Kinect human-computer interaction, designed a refined UI, and used particle effects to detect human hand gestures. The corresponding particle effects can be changed. However, there is room for improvement, as more functions and designs can be developed. I hope to continuously perfect this in my subsequent studies.</p>
+<h1 id="VI-Experiment-Code"><a href="#VI-Experiment-Code" class="headerlink" title="VI. Experiment Code"></a>VI. Experiment Code</h1><p>Fluid CustomParticles:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br><span class="line">385</span><br><span class="line">386</span><br><span class="line">387</span><br><span class="line">388</span><br><span class="line">389</span><br><span class="line">390</span><br><span class="line">391</span><br><span class="line">392</span><br><span class="line">393</span><br><span class="line">394</span><br><span class="line">395</span><br><span class="line">396</span><br><span class="line">397</span><br><span class="line">398</span><br><span class="line">399</span><br><span class="line">400</span><br><span class="line">401</span><br><span class="line">402</span><br><span class="line">403</span><br><span class="line">404</span><br><span class="line">405</span><br><span class="line">406</span><br><span class="line">407</span><br><span class="line">408</span><br><span class="line">409</span><br><span class="line">410</span><br><span class="line">411</span><br><span class="line">412</span><br><span class="line">413</span><br><span class="line">414</span><br><span class="line">415</span><br><span class="line">416</span><br><span class="line">417</span><br><span class="line">418</span><br><span class="line">419</span><br><span class="line">420</span><br><span class="line">421</span><br><span class="line">422</span><br><span class="line">423</span><br><span class="line">424</span><br><span class="line">425</span><br><span class="line">426</span><br><span class="line">427</span><br><span class="line">428</span><br><span class="line">429</span><br><span class="line">430</span><br><span class="line">431</span><br><span class="line">432</span><br><span class="line">433</span><br><span class="line">434</span><br><span class="line">435</span><br><span class="line">436</span><br><span class="line">437</span><br><span class="line">438</span><br><span class="line">439</span><br><span class="line">440</span><br><span class="line">441</span><br><span class="line">442</span><br><span class="line">443</span><br><span class="line">444</span><br><span class="line">445</span><br><span class="line">446</span><br><span class="line">447</span><br><span class="line">448</span><br><span class="line">449</span><br><span class="line">450</span><br><span class="line">451</span><br><span class="line">452</span><br><span class="line">453</span><br><span class="line">454</span><br><span class="line">455</span><br><span class="line">456</span><br><span class="line">457</span><br><span class="line">458</span><br><span class="line">459</span><br><span class="line">460</span><br><span class="line">461</span><br><span class="line">462</span><br><span class="line">463</span><br><span class="line">464</span><br><span class="line">465</span><br><span class="line">466</span><br><span class="line">467</span><br><span class="line">468</span><br><span class="line">469</span><br><span class="line">470</span><br><span class="line">471</span><br><span class="line">472</span><br><span class="line">473</span><br><span class="line">474</span><br><span class="line">475</span><br><span class="line">476</span><br><span class="line">477</span><br><span class="line">478</span><br><span class="line">479</span><br><span class="line">480</span><br><span class="line">481</span><br><span class="line">482</span><br><span class="line">483</span><br><span class="line">484</span><br><span class="line">485</span><br><span class="line">486</span><br><span class="line">487</span><br><span class="line">488</span><br><span class="line">489</span><br><span class="line">490</span><br><span class="line">491</span><br><span class="line">492</span><br><span class="line">493</span><br><span class="line">494</span><br><span class="line">495</span><br><span class="line">496</span><br><span class="line">497</span><br><span class="line">498</span><br><span class="line">499</span><br><span class="line">500</span><br><span class="line">501</span><br><span class="line">502</span><br><span class="line">503</span><br><span class="line">504</span><br><span class="line">505</span><br><span class="line">506</span><br><span class="line">507</span><br><span class="line">508</span><br><span class="line">509</span><br><span class="line">510</span><br><span class="line">511</span><br><span class="line">512</span><br><span class="line">513</span><br><span class="line">514</span><br><span class="line">515</span><br><span class="line">516</span><br><span class="line">517</span><br><span class="line">518</span><br><span class="line">519</span><br><span class="line">520</span><br><span class="line">521</span><br><span class="line">522</span><br><span class="line">523</span><br><span class="line">524</span><br><span class="line">525</span><br><span class="line">526</span><br><span class="line">527</span><br><span class="line">528</span><br><span class="line">529</span><br><span class="line">530</span><br><span class="line">531</span><br><span class="line">532</span><br><span class="line">533</span><br><span class="line">534</span><br><span class="line">535</span><br><span class="line">536</span><br><span class="line">537</span><br><span class="line">538</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-keyword">import</span> com.thomasdiewald.pixelflow.java.DwPixelFlow;<br><span class="hljs-keyword">import</span> com.thomasdiewald.pixelflow.java.fluid.DwFluid2D;<br><br><span class="hljs-keyword">import</span> controlP5.Accordion;<br><span class="hljs-keyword">import</span> controlP5.ControlP5;<br><span class="hljs-keyword">import</span> controlP5.Group;<br><span class="hljs-keyword">import</span> controlP5.RadioButton;<br><span class="hljs-keyword">import</span> controlP5.Toggle;<br><span class="hljs-keyword">import</span> processing.core.*;<br><span class="hljs-keyword">import</span> processing.opengl.PGraphics2D;<br><span class="hljs-keyword">import</span> processing.opengl.PJOGL;<br><br><span class="hljs-keyword">import</span> java.util.ArrayList;<br><span class="hljs-keyword">import</span> KinectPV2.KJoint;<br><span class="hljs-keyword">import</span> KinectPV2.*;<br><br>KinectPV2 kinect;<br><span class="hljs-keyword">private</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyFluidData</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">DwFluid2D</span>.FluidData&#123;<br>  <br>  <span class="hljs-comment">// update() is called during the fluid-simulation update step.</span><br>  <span class="hljs-meta">@Override</span><br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">update</span><span class="hljs-params">(DwFluid2D fluid)</span> &#123;<br>    <span class="hljs-type">float</span> tempX,tempY,tempX2,tempY2,px, py, vx, vy, radius, vscale, temperature;<br>    <span class="hljs-type">int</span> hstate;<br>    <span class="hljs-type">int</span> hstate2;<br>    radius = <span class="hljs-number">15</span>;<br>    vscale = <span class="hljs-number">10</span>;<br>    px    = width/<span class="hljs-number">2</span>;<br>    tempX = width/<span class="hljs-number">2</span>; <br>    tempX2 = width/<span class="hljs-number">2</span>; <br>    py     = <span class="hljs-number">50</span>;<br>    tempY  = <span class="hljs-number">50</span>; <br>    tempY2  = <span class="hljs-number">50</span>;<br>    vx     = <span class="hljs-number">1</span> * +vscale;<br>    vy     = <span class="hljs-number">1</span> *  vscale;<br>    radius = <span class="hljs-number">40</span>;<br>    temperature = <span class="hljs-number">1f</span>;<br>    hstate = KinectPV2.HandState_NotTracked;<br>    hstate2 = KinectPV2.HandState_NotTracked;<br><br>    ArrayList&lt;KSkeleton&gt; skeletonArray =  kinect.getSkeletonDepthMap();<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; skeletonArray.size(); i++) <br>    &#123;<br>      <span class="hljs-type">KSkeleton</span> <span class="hljs-variable">skeleton</span> <span class="hljs-operator">=</span> (KSkeleton) skeletonArray.get(i);<br>      <span class="hljs-comment">//if the skeleton is being tracked compute the skleton joints</span><br>      <span class="hljs-keyword">if</span> (skeleton.isTracked()) &#123;<br>        KJoint[] joints = skeleton.getJoints();<br>        <span class="hljs-type">KJoint</span> <span class="hljs-variable">RightHand</span> <span class="hljs-operator">=</span> joints[KinectPV2.JointType_HandRight];<br>        <span class="hljs-type">KJoint</span> <span class="hljs-variable">LeftHand</span> <span class="hljs-operator">=</span> joints[KinectPV2.JointType_HandLeft];<br>        tempX = RightHand.getX();<br>        tempY = height - RightHand.getY();<br>        hstate = RightHand.getState();<br><br>        tempX2 = LeftHand.getX();<br>        tempY2 = height - LeftHand.getY();<br>        hstate2 = LeftHand.getState();<br>      &#125;<br>    &#125;<br><br><br>    fluid.addDensity(px, py, radius, <span class="hljs-number">0.2f</span>, <span class="hljs-number">0.3f</span>, <span class="hljs-number">0.5f</span>, <span class="hljs-number">1.0f</span>);<br>    fluid.addTemperature(px, py, radius, temperature);<br>    particles.spawn(fluid, px, py, radius, <span class="hljs-number">100</span>);<br>    <br>    <span class="hljs-type">boolean</span> <span class="hljs-variable">mouse_input</span> <span class="hljs-operator">=</span> !cp5.isMouseOver() &amp;&amp; mousePressed;<br>    <span class="hljs-keyword">switch</span>(hstate2)&#123;<br>      <span class="hljs-keyword">case</span> KinectPV2.HandState_Closed :<br>        fluid.addDensity(tempX2, tempY2, radius, <span class="hljs-number">0.2f</span>, <span class="hljs-number">0.3f</span>, <span class="hljs-number">0.5f</span>, <span class="hljs-number">1.0f</span>);<br>        fluid.addTemperature(tempX2, tempY2, radius, temperature);<br>        particles.spawn(fluid, tempX2, tempY2, radius, <span class="hljs-number">100</span>);<br>        <span class="hljs-keyword">break</span>;<br>      <span class="hljs-keyword">case</span> KinectPV2.HandState_Open :<br>        radius = <span class="hljs-number">15</span>;<br>        vscale = <span class="hljs-number">15</span>;<br>        vx     = +<span class="hljs-number">3</span>*vscale;<br>        vy     = -<span class="hljs-number">3</span>*vscale;<br>        px     = tempX2;<br>        py     = tempY2;<br>        fluid.addDensity (px, py, radius, <span class="hljs-number">0.25f</span>, <span class="hljs-number">0.0f</span>, <span class="hljs-number">0.1f</span>, <span class="hljs-number">1.0f</span>);<br>        fluid.addVelocity(px, py, radius, vx, vy);<br>        particles.spawn(fluid, px, py, radius*<span class="hljs-number">2</span>, <span class="hljs-number">300</span>);<br>      <span class="hljs-keyword">break</span>;<br>    &#125;<br><br>    <span class="hljs-keyword">switch</span>(hstate)&#123;<br>      <span class="hljs-keyword">case</span> KinectPV2.HandState_Closed :<br>        fluid.addDensity(tempX, tempY, radius, <span class="hljs-number">0.2f</span>, <span class="hljs-number">0.3f</span>, <span class="hljs-number">0.5f</span>, <span class="hljs-number">1.0f</span>);<br>        fluid.addTemperature(tempX, tempY, radius, temperature);<br>        particles.spawn(fluid, tempX, tempY, radius, <span class="hljs-number">100</span>);<br>        <span class="hljs-keyword">break</span>;<br>      <span class="hljs-keyword">case</span> KinectPV2.HandState_Open :<br>        radius = <span class="hljs-number">15</span>;<br>        vscale = <span class="hljs-number">15</span>;<br>        vx     = +<span class="hljs-number">3</span>*vscale;<br>        vy     = -<span class="hljs-number">3</span>*vscale;<br>        px     = tempX;<br>        py     = tempY;<br>        fluid.addDensity (px, py, radius, <span class="hljs-number">0.25f</span>, <span class="hljs-number">0.0f</span>, <span class="hljs-number">0.1f</span>, <span class="hljs-number">1.0f</span>);<br>        fluid.addVelocity(px, py, radius, vx, vy);<br>        particles.spawn(fluid, px, py, radius*<span class="hljs-number">2</span>, <span class="hljs-number">300</span>);<br>      <span class="hljs-keyword">break</span>;<br>    &#125;<br><br>    <span class="hljs-keyword">if</span>(mouse_input &amp;&amp; mouseButton == LEFT)&#123;<br>      radius = <span class="hljs-number">15</span>;<br>      vscale = <span class="hljs-number">15</span>;<br>      px     = mouseX;<br>      py     = height-mouseY;<br>      vx     = (mouseX - pmouseX) * +vscale;<br>      vy     = (mouseY - pmouseY) * -vscale;<br><br><br><br>      fluid.addDensity (px, py, radius, <span class="hljs-number">0.25f</span>, <span class="hljs-number">0.0f</span>, <span class="hljs-number">0.1f</span>, <span class="hljs-number">1.0f</span>);<br>      fluid.addVelocity(px, py, radius, vx, vy);<br>      particles.spawn(fluid, px, py, radius*<span class="hljs-number">2</span>, <span class="hljs-number">300</span>);<br>    &#125;    <br>    <br>    <span class="hljs-comment">// add impulse: density + velocity, particles</span><br>    <span class="hljs-keyword">if</span>(mouse_input &amp;&amp; mouseButton == LEFT)&#123;<br>      radius = <span class="hljs-number">15</span>;<br>      vscale = <span class="hljs-number">15</span>;<br>      px     = mouseX;<br>      py     = height-mouseY;<br>      vx     = (mouseX - pmouseX) * +vscale;<br>      vy     = (mouseY - pmouseY) * -vscale;<br>      fluid.addDensity (px, py, radius, <span class="hljs-number">0.25f</span>, <span class="hljs-number">0.0f</span>, <span class="hljs-number">0.1f</span>, <span class="hljs-number">1.0f</span>);<br>      fluid.addVelocity(px, py, radius, vx, vy);<br>      particles.spawn(fluid, px, py, radius*<span class="hljs-number">2</span>, <span class="hljs-number">300</span>);<br>    &#125;<br>    <br>    <span class="hljs-comment">// add impulse: density + temperature, particles</span><br>    <span class="hljs-keyword">if</span>(mouse_input &amp;&amp; mouseButton == CENTER)&#123;<br>      radius = <span class="hljs-number">15</span>;<br>      vscale = <span class="hljs-number">15</span>;<br>      px     = mouseX;<br>      py     = height-mouseY;<br>      temperature = <span class="hljs-number">2f</span>;<br>      fluid.addDensity(px, py, radius, <span class="hljs-number">0.25f</span>, <span class="hljs-number">0.0f</span>, <span class="hljs-number">0.1f</span>, <span class="hljs-number">1.0f</span>);<br>      fluid.addTemperature(px, py, radius, temperature);<br>      particles.spawn(fluid, px, py, radius, <span class="hljs-number">100</span>);<br>    &#125;<br>    <br>    <span class="hljs-comment">// particles</span><br>    <span class="hljs-keyword">if</span>(mouse_input &amp;&amp; mouseButton == RIGHT)&#123;<br>      px     = mouseX;<br>      py     = height - <span class="hljs-number">1</span> - mouseY; <span class="hljs-comment">// invert</span><br>      radius = <span class="hljs-number">50</span>;<br>      particles.spawn(fluid, px, py, radius, <span class="hljs-number">300</span>);<br>    &#125;<br>      <br>  &#125;<br>&#125;<br><br><br><br><span class="hljs-type">int</span> <span class="hljs-variable">viewport_w</span> <span class="hljs-operator">=</span> <span class="hljs-number">512</span>;<br><span class="hljs-type">int</span> <span class="hljs-variable">viewport_h</span> <span class="hljs-operator">=</span> <span class="hljs-number">424</span>;<br><span class="hljs-type">int</span> <span class="hljs-variable">viewport_x</span> <span class="hljs-operator">=</span> <span class="hljs-number">230</span>;<br><span class="hljs-type">int</span> <span class="hljs-variable">viewport_y</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br><br><span class="hljs-type">int</span> <span class="hljs-variable">gui_w</span> <span class="hljs-operator">=</span> <span class="hljs-number">200</span>;<br><span class="hljs-type">int</span> <span class="hljs-variable">gui_x</span> <span class="hljs-operator">=</span> <span class="hljs-number">20</span>;<br><span class="hljs-type">int</span> <span class="hljs-variable">gui_y</span> <span class="hljs-operator">=</span> <span class="hljs-number">20</span>;<br>KJoint[] joints;<br><span class="hljs-type">int</span> <span class="hljs-variable">fluidgrid_scale</span> <span class="hljs-operator">=</span> <span class="hljs-number">3</span>;<br><br>DwFluid2D fluid;<br><br><span class="hljs-comment">// render targets</span><br>PGraphics2D pg_fluid;<br><span class="hljs-comment">//texture-buffer, for adding obstacles</span><br>PGraphics2D pg_obstacles;<br><br><span class="hljs-comment">// custom particle system</span><br>MyParticleSystem particles;<br><br><span class="hljs-comment">// some state variables for the GUI/display</span><br><span class="hljs-type">int</span>     <span class="hljs-variable">BACKGROUND_COLOR</span>           <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br><span class="hljs-type">boolean</span> <span class="hljs-variable">UPDATE_FLUID</span>               <span class="hljs-operator">=</span> <span class="hljs-literal">true</span>;<br><span class="hljs-type">boolean</span> <span class="hljs-variable">DISPLAY_FLUID_TEXTURES</span>     <span class="hljs-operator">=</span> <span class="hljs-literal">false</span>;<br><span class="hljs-type">boolean</span> <span class="hljs-variable">DISPLAY_FLUID_VECTORS</span>      <span class="hljs-operator">=</span> <span class="hljs-literal">false</span>;<br><span class="hljs-type">int</span>     <span class="hljs-variable">DISPLAY_fluid_texture_mode</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br><span class="hljs-type">boolean</span> <span class="hljs-variable">DISPLAY_PARTICLES</span>          <span class="hljs-operator">=</span> <span class="hljs-literal">true</span>;<br><br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">settings</span><span class="hljs-params">()</span> &#123;<br>  size(viewport_w, viewport_h, P2D);<br>  smooth(<span class="hljs-number">4</span>);<br>  PJOGL.profile = <span class="hljs-number">3</span>;<br>  <br>&#125;<br><br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setup</span><span class="hljs-params">()</span> &#123;<br>  <br>  kinect = <span class="hljs-keyword">new</span> <span class="hljs-title class_">KinectPV2</span>(<span class="hljs-built_in">this</span>);<br>  kinect.enableDepthMaskImg(<span class="hljs-literal">true</span>);<br>  kinect.enableSkeletonDepthMap(<span class="hljs-literal">true</span>);<br>  kinect.init();<br> <br>  surface.setLocation(viewport_x, viewport_y);<br>  <br>  <span class="hljs-comment">// main library context</span><br>  <span class="hljs-type">DwPixelFlow</span> <span class="hljs-variable">context</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DwPixelFlow</span>(<span class="hljs-built_in">this</span>);<br>  context.print();<br>  context.printGL();<br><br>  <span class="hljs-comment">// fluid simulation</span><br>  fluid = <span class="hljs-keyword">new</span> <span class="hljs-title class_">DwFluid2D</span>(context, viewport_w, viewport_h, fluidgrid_scale);<br><br>  <span class="hljs-comment">// set some simulation parameters</span><br>  fluid.param.dissipation_density     = <span class="hljs-number">0.999f</span>;<br>  fluid.param.dissipation_velocity    = <span class="hljs-number">0.99f</span>;<br>  fluid.param.dissipation_temperature = <span class="hljs-number">0.80f</span>;<br>  fluid.param.vorticity               = <span class="hljs-number">0.10f</span>;<br>  <br>  <span class="hljs-comment">// interface for adding data to the fluid simulation</span><br>  <span class="hljs-type">MyFluidData</span> <span class="hljs-variable">cb_fluid_data</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">MyFluidData</span>();<br>  fluid.addCallback_FluiData(cb_fluid_data);<br>  <br>  <span class="hljs-comment">// pgraphics for fluid</span><br>  pg_fluid = (PGraphics2D) createGraphics(viewport_w, viewport_h, P2D);<br>  pg_fluid.smooth(<span class="hljs-number">4</span>);<br>  pg_fluid.beginDraw();<br>  pg_fluid.background(BACKGROUND_COLOR);<br>  pg_fluid.endDraw();<br>  <br>      <span class="hljs-comment">// pgraphics for obstacles</span><br>  pg_obstacles = (PGraphics2D) createGraphics(viewport_w, viewport_h, P2D);<br>  pg_obstacles.smooth(<span class="hljs-number">4</span>);<br>  pg_obstacles.beginDraw();<br>  pg_obstacles.clear();<br>  <span class="hljs-type">float</span> radius;<br>  radius = <span class="hljs-number">200</span>;<br>  pg_obstacles.stroke(<span class="hljs-number">64</span>);<br>  pg_obstacles.strokeWeight(<span class="hljs-number">10</span>);<br>  pg_obstacles.noFill();<br>  pg_obstacles.rect(<span class="hljs-number">1</span>*width/<span class="hljs-number">2f</span>,  <span class="hljs-number">1</span>*height/<span class="hljs-number">4f</span>, radius, radius, <span class="hljs-number">20</span>);<br>  <span class="hljs-comment">// border-obstacle</span><br>  pg_obstacles.strokeWeight(<span class="hljs-number">20</span>);<br>  pg_obstacles.stroke(<span class="hljs-number">64</span>);<br>  pg_obstacles.noFill();<br>  pg_obstacles.rect(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, pg_obstacles.width, pg_obstacles.height);<br>  pg_obstacles.endDraw();<br>  <br>  fluid.addObstacles(pg_obstacles);<br>  <br>  <span class="hljs-comment">// custom particle object</span><br>  particles = <span class="hljs-keyword">new</span> <span class="hljs-title class_">MyParticleSystem</span>(context, <span class="hljs-number">1000</span> * <span class="hljs-number">1000</span>);<br><br>  createGUI();<br>  <br>  background(<span class="hljs-number">0</span>);<br>  frameRate(<span class="hljs-number">60</span>);<br>&#125;<br><br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">draw</span><span class="hljs-params">()</span> &#123;    <br>  <span class="hljs-comment">// update simulation</span><br>  <span class="hljs-keyword">if</span>(UPDATE_FLUID)&#123;<br>    fluid.addObstacles(pg_obstacles);<br>    fluid.update();<br>    particles.update(fluid);<br>  &#125;<br>  <br>  <span class="hljs-comment">// clear render target</span><br>  pg_fluid.beginDraw();<br>  pg_fluid.background(BACKGROUND_COLOR);<br>  pg_fluid.endDraw();<br>  <br>  image(kinect.getDepthMaskImage(), <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);<br><br><br>  <span class="hljs-comment">// render fluid stuff</span><br>  <span class="hljs-keyword">if</span>(DISPLAY_FLUID_TEXTURES)&#123;<br>    <span class="hljs-comment">// render: density (0), temperature (1), pressure (2), velocity (3)</span><br>    fluid.renderFluidTextures(pg_fluid, DISPLAY_fluid_texture_mode);<br>  &#125;<br>  <br>  <span class="hljs-keyword">if</span>(DISPLAY_FLUID_VECTORS)&#123;<br>    <span class="hljs-comment">// render: velocity vector field</span><br>    fluid.renderFluidVectors(pg_fluid, <span class="hljs-number">10</span>);<br>  &#125;<br>  <br>  <span class="hljs-keyword">if</span>( DISPLAY_PARTICLES)&#123;<br>    <span class="hljs-comment">// render: particles; 0 ... points, 1 ...sprite texture, 2 ... dynamic points</span><br>    particles.render(pg_fluid, BACKGROUND_COLOR);<br>  &#125;<br>  <br><br>  <span class="hljs-comment">// display</span><br>  image(pg_fluid    , <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);<br>  image(pg_obstacles, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);<br>  <br>&#125;<br><br><br><br><br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">fluid_resizeUp</span><span class="hljs-params">()</span>&#123;<br>  fluid.resize(width, height, fluidgrid_scale = max(<span class="hljs-number">1</span>, --fluidgrid_scale));<br>&#125;<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">fluid_resizeDown</span><span class="hljs-params">()</span>&#123;<br>  fluid.resize(width, height, ++fluidgrid_scale);<br>&#125;<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">fluid_reset</span><span class="hljs-params">()</span>&#123;<br>  fluid.reset();<br>&#125;<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">fluid_togglePause</span><span class="hljs-params">()</span>&#123;<br>  UPDATE_FLUID = !UPDATE_FLUID;<br>&#125;<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">fluid_displayMode</span><span class="hljs-params">(<span class="hljs-type">int</span> val)</span>&#123;<br>  DISPLAY_fluid_texture_mode = val;<br>  DISPLAY_FLUID_TEXTURES = DISPLAY_fluid_texture_mode != -<span class="hljs-number">1</span>;<br>&#125;<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">fluid_displayVelocityVectors</span><span class="hljs-params">(<span class="hljs-type">int</span> val)</span>&#123;<br>  DISPLAY_FLUID_VECTORS = val != -<span class="hljs-number">1</span>;<br>&#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">fluid_displayParticles</span><span class="hljs-params">(<span class="hljs-type">int</span> val)</span>&#123;<br>  DISPLAY_PARTICLES = val != -<span class="hljs-number">1</span>;<br>&#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">keyReleased</span><span class="hljs-params">()</span>&#123;<br>  <span class="hljs-keyword">if</span>(key == <span class="hljs-string">&#x27;p&#x27;</span>) fluid_togglePause(); <span class="hljs-comment">// pause / unpause simulation</span><br>  <span class="hljs-keyword">if</span>(key == <span class="hljs-string">&#x27;+&#x27;</span>) fluid_resizeUp();    <span class="hljs-comment">// increase fluid-grid resolution</span><br>  <span class="hljs-keyword">if</span>(key == <span class="hljs-string">&#x27;-&#x27;</span>) fluid_resizeDown();  <span class="hljs-comment">// decrease fluid-grid resolution</span><br>  <span class="hljs-keyword">if</span>(key == <span class="hljs-string">&#x27;r&#x27;</span>) fluid_reset();       <span class="hljs-comment">// restart simulation</span><br>  <br>  <span class="hljs-keyword">if</span>(key == <span class="hljs-string">&#x27;1&#x27;</span>) DISPLAY_fluid_texture_mode = <span class="hljs-number">0</span>; <span class="hljs-comment">// density</span><br>  <span class="hljs-keyword">if</span>(key == <span class="hljs-string">&#x27;2&#x27;</span>) DISPLAY_fluid_texture_mode = <span class="hljs-number">1</span>; <span class="hljs-comment">// temperature</span><br>  <span class="hljs-keyword">if</span>(key == <span class="hljs-string">&#x27;3&#x27;</span>) DISPLAY_fluid_texture_mode = <span class="hljs-number">2</span>; <span class="hljs-comment">// pressure</span><br>  <span class="hljs-keyword">if</span>(key == <span class="hljs-string">&#x27;4&#x27;</span>) DISPLAY_fluid_texture_mode = <span class="hljs-number">3</span>; <span class="hljs-comment">// velocity</span><br>  <br>  <span class="hljs-keyword">if</span>(key == <span class="hljs-string">&#x27;q&#x27;</span>) DISPLAY_FLUID_TEXTURES = !DISPLAY_FLUID_TEXTURES;<br>  <span class="hljs-keyword">if</span>(key == <span class="hljs-string">&#x27;w&#x27;</span>) DISPLAY_FLUID_VECTORS  = !DISPLAY_FLUID_VECTORS;<br>&#125;<br><br><br><span class="hljs-comment">//draw the body</span><br><span class="hljs-keyword">void</span> <span class="hljs-title function_">drawBody</span><span class="hljs-params">(KJoint[] joints)</span> &#123;<br>  drawBone(joints, KinectPV2.JointType_Head, KinectPV2.JointType_Neck);<br>  drawBone(joints, KinectPV2.JointType_Neck, KinectPV2.JointType_SpineShoulder);<br>  drawBone(joints, KinectPV2.JointType_SpineShoulder, KinectPV2.JointType_SpineMid);<br>  drawBone(joints, KinectPV2.JointType_SpineMid, KinectPV2.JointType_SpineBase);<br>  drawBone(joints, KinectPV2.JointType_SpineShoulder, KinectPV2.JointType_ShoulderRight);<br>  drawBone(joints, KinectPV2.JointType_SpineShoulder, KinectPV2.JointType_ShoulderLeft);<br>  drawBone(joints, KinectPV2.JointType_SpineBase, KinectPV2.JointType_HipRight);<br>  drawBone(joints, KinectPV2.JointType_SpineBase, KinectPV2.JointType_HipLeft);<br><br>  <span class="hljs-comment">// Right Arm</span><br>  drawBone(joints, KinectPV2.JointType_ShoulderRight, KinectPV2.JointType_ElbowRight);<br>  drawBone(joints, KinectPV2.JointType_ElbowRight, KinectPV2.JointType_WristRight);<br>  drawBone(joints, KinectPV2.JointType_WristRight, KinectPV2.JointType_HandRight);<br>  drawBone(joints, KinectPV2.JointType_HandRight, KinectPV2.JointType_HandTipRight);<br>  drawBone(joints, KinectPV2.JointType_WristRight, KinectPV2.JointType_ThumbRight);<br><br>  <span class="hljs-comment">// Left Arm</span><br>  drawBone(joints, KinectPV2.JointType_ShoulderLeft, KinectPV2.JointType_ElbowLeft);<br>  drawBone(joints, KinectPV2.JointType_ElbowLeft, KinectPV2.JointType_WristLeft);<br>  drawBone(joints, KinectPV2.JointType_WristLeft, KinectPV2.JointType_HandLeft);<br>  drawBone(joints, KinectPV2.JointType_HandLeft, KinectPV2.JointType_HandTipLeft);<br>  drawBone(joints, KinectPV2.JointType_WristLeft, KinectPV2.JointType_ThumbLeft);<br><br>  <span class="hljs-comment">// Right Leg</span><br>  drawBone(joints, KinectPV2.JointType_HipRight, KinectPV2.JointType_KneeRight);<br>  drawBone(joints, KinectPV2.JointType_KneeRight, KinectPV2.JointType_AnkleRight);<br>  drawBone(joints, KinectPV2.JointType_AnkleRight, KinectPV2.JointType_FootRight);<br><br>  <span class="hljs-comment">// Left Leg</span><br>  drawBone(joints, KinectPV2.JointType_HipLeft, KinectPV2.JointType_KneeLeft);<br>  drawBone(joints, KinectPV2.JointType_KneeLeft, KinectPV2.JointType_AnkleLeft);<br>  drawBone(joints, KinectPV2.JointType_AnkleLeft, KinectPV2.JointType_FootLeft);<br><br>  <span class="hljs-comment">//Single joints</span><br>  drawJoint(joints, KinectPV2.JointType_HandTipLeft);<br>  drawJoint(joints, KinectPV2.JointType_HandTipRight);<br>  drawJoint(joints, KinectPV2.JointType_FootLeft);<br>  drawJoint(joints, KinectPV2.JointType_FootRight);<br><br>  drawJoint(joints, KinectPV2.JointType_ThumbLeft);<br>  drawJoint(joints, KinectPV2.JointType_ThumbRight);<br><br>  drawJoint(joints, KinectPV2.JointType_Head);<br>&#125;<br><br><span class="hljs-comment">//draw a single joint</span><br><span class="hljs-keyword">void</span> <span class="hljs-title function_">drawJoint</span><span class="hljs-params">(KJoint[] joints, <span class="hljs-type">int</span> jointType)</span> &#123;<br>  pushMatrix();<br>  translate(joints[jointType].getX(), joints[jointType].getY(), joints[jointType].getZ());<br>  ellipse(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">25</span>, <span class="hljs-number">25</span>);<br>  popMatrix();<br>&#125;<br><br><span class="hljs-comment">//draw a bone from two joints</span><br><span class="hljs-keyword">void</span> <span class="hljs-title function_">drawBone</span><span class="hljs-params">(KJoint[] joints, <span class="hljs-type">int</span> jointType1, <span class="hljs-type">int</span> jointType2)</span> &#123;<br>  pushMatrix();<br>  translate(joints[jointType1].getX(), joints[jointType1].getY(), joints[jointType1].getZ());<br>  ellipse(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">25</span>, <span class="hljs-number">25</span>);<br>  popMatrix();<br>  line(joints[jointType1].getX(), joints[jointType1].getY(), joints[jointType1].getZ(), joints[jointType2].getX(), joints[jointType2].getY(), joints[jointType2].getZ());<br>&#125;<br><br><span class="hljs-comment">//draw a ellipse depending on the hand state</span><br><span class="hljs-keyword">void</span> <span class="hljs-title function_">drawHandState</span><span class="hljs-params">(KJoint joint)</span> &#123;<br>  noStroke();<br>  handState(joint.getState());<br>  pushMatrix();<br>  translate(joint.getX(), joint.getY(), joint.getZ());<br>  println(joint.getX(), joint.getY(), joint.getZ());<br>  ellipse(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">70</span>, <span class="hljs-number">70</span>);<br>  popMatrix();<br>&#125;<br><br><span class="hljs-comment">/*</span><br><span class="hljs-comment">Different hand state</span><br><span class="hljs-comment"> KinectPV2.HandState_Open</span><br><span class="hljs-comment"> KinectPV2.HandState_Closed</span><br><span class="hljs-comment"> KinectPV2.HandState_Lasso</span><br><span class="hljs-comment"> KinectPV2.HandState_NotTracked</span><br><span class="hljs-comment"> */</span><br><br><span class="hljs-comment">//Depending on the hand state change the color</span><br><span class="hljs-keyword">void</span> <span class="hljs-title function_">handState</span><span class="hljs-params">(<span class="hljs-type">int</span> handState)</span> &#123;<br>  <span class="hljs-keyword">switch</span>(handState) &#123;<br>  <span class="hljs-keyword">case</span> KinectPV2.HandState_Open:<br>    fill(<span class="hljs-number">0</span>, <span class="hljs-number">255</span>, <span class="hljs-number">0</span>);<br>    <span class="hljs-keyword">break</span>;<br>  <span class="hljs-keyword">case</span> KinectPV2.HandState_Closed:<br>    fill(<span class="hljs-number">255</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);<br>    <span class="hljs-keyword">break</span>;<br>  <span class="hljs-keyword">case</span> KinectPV2.HandState_Lasso:<br>    fill(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">255</span>);<br>    <span class="hljs-keyword">break</span>;<br>  <span class="hljs-keyword">case</span> KinectPV2.HandState_NotTracked:<br>    fill(<span class="hljs-number">100</span>, <span class="hljs-number">100</span>, <span class="hljs-number">100</span>);<br>    <span class="hljs-keyword">break</span>;<br>  &#125;<br>&#125;<br><br><br><br>ControlP5 cp5;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">createGUI</span><span class="hljs-params">()</span>&#123;<br>  cp5 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ControlP5</span>(<span class="hljs-built_in">this</span>);<br>  <br>  <span class="hljs-type">int</span> sx, sy, px, py, oy;<br>  <br>  sx = <span class="hljs-number">100</span>; sy = <span class="hljs-number">14</span>; oy = (<span class="hljs-type">int</span>)(sy*<span class="hljs-number">1.5f</span>);<br>  <br><br>  <span class="hljs-comment">////////////////////////////////////////////////////////////////////////////</span><br>  <span class="hljs-comment">// GUI - FLUID</span><br>  <span class="hljs-comment">////////////////////////////////////////////////////////////////////////////</span><br>  <span class="hljs-type">Group</span> <span class="hljs-variable">group_fluid</span> <span class="hljs-operator">=</span> cp5.addGroup(<span class="hljs-string">&quot;fluid&quot;</span>);<br>  &#123;<br>    group_fluid.setHeight(<span class="hljs-number">20</span>).setSize(gui_w, <span class="hljs-number">300</span>)<br>    .setBackgroundColor(color(<span class="hljs-number">16</span>, <span class="hljs-number">180</span>)).setColorBackground(color(<span class="hljs-number">16</span>, <span class="hljs-number">180</span>));<br>    group_fluid.getCaptionLabel().align(CENTER, CENTER);<br>    <br>    px = <span class="hljs-number">10</span>; py = <span class="hljs-number">15</span>;<br>    <br>    cp5.addButton(<span class="hljs-string">&quot;reset&quot;</span>).setGroup(group_fluid).plugTo(<span class="hljs-built_in">this</span>, <span class="hljs-string">&quot;fluid_reset&quot;</span>     ).setSize(<span class="hljs-number">80</span>, <span class="hljs-number">18</span>).setPosition(px    , py);<br>    cp5.addButton(<span class="hljs-string">&quot;+&quot;</span>    ).setGroup(group_fluid).plugTo(<span class="hljs-built_in">this</span>, <span class="hljs-string">&quot;fluid_resizeUp&quot;</span>  ).setSize(<span class="hljs-number">39</span>, <span class="hljs-number">18</span>).setPosition(px+=<span class="hljs-number">82</span>, py);<br>    cp5.addButton(<span class="hljs-string">&quot;-&quot;</span>    ).setGroup(group_fluid).plugTo(<span class="hljs-built_in">this</span>, <span class="hljs-string">&quot;fluid_resizeDown&quot;</span>).setSize(<span class="hljs-number">39</span>, <span class="hljs-number">18</span>).setPosition(px+=<span class="hljs-number">41</span>, py);<br>    <br>    px = <span class="hljs-number">10</span>;<br>    <br>    cp5.addSlider(<span class="hljs-string">&quot;velocity&quot;</span>).setGroup(group_fluid).setSize(sx, sy).setPosition(px, py+=(<span class="hljs-type">int</span>)(oy*<span class="hljs-number">1.5f</span>))<br>        .setRange(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>).setValue(fluid.param.dissipation_velocity).plugTo(fluid.param, <span class="hljs-string">&quot;dissipation_velocity&quot;</span>);<br>    <br>    cp5.addSlider(<span class="hljs-string">&quot;density&quot;</span>).setGroup(group_fluid).setSize(sx, sy).setPosition(px, py+=oy)<br>        .setRange(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>).setValue(fluid.param.dissipation_density).plugTo(fluid.param, <span class="hljs-string">&quot;dissipation_density&quot;</span>);<br>    <br>    cp5.addSlider(<span class="hljs-string">&quot;temperature&quot;</span>).setGroup(group_fluid).setSize(sx, sy).setPosition(px, py+=oy)<br>        .setRange(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>).setValue(fluid.param.dissipation_temperature).plugTo(fluid.param, <span class="hljs-string">&quot;dissipation_temperature&quot;</span>);<br>    <br>    cp5.addSlider(<span class="hljs-string">&quot;vorticity&quot;</span>).setGroup(group_fluid).setSize(sx, sy).setPosition(px, py+=oy)<br>        .setRange(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>).setValue(fluid.param.vorticity).plugTo(fluid.param, <span class="hljs-string">&quot;vorticity&quot;</span>);<br>        <br>    cp5.addSlider(<span class="hljs-string">&quot;iterations&quot;</span>).setGroup(group_fluid).setSize(sx, sy).setPosition(px, py+=oy)<br>        .setRange(<span class="hljs-number">0</span>, <span class="hljs-number">80</span>).setValue(fluid.param.num_jacobi_projection).plugTo(fluid.param, <span class="hljs-string">&quot;num_jacobi_projection&quot;</span>);<br>          <br>    cp5.addSlider(<span class="hljs-string">&quot;timestep&quot;</span>).setGroup(group_fluid).setSize(sx, sy).setPosition(px, py+=oy)<br>        .setRange(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>).setValue(fluid.param.timestep).plugTo(fluid.param, <span class="hljs-string">&quot;timestep&quot;</span>);<br>        <br>    cp5.addSlider(<span class="hljs-string">&quot;gridscale&quot;</span>).setGroup(group_fluid).setSize(sx, sy).setPosition(px, py+=oy)<br>        .setRange(<span class="hljs-number">0</span>, <span class="hljs-number">50</span>).setValue(fluid.param.gridscale).plugTo(fluid.param, <span class="hljs-string">&quot;gridscale&quot;</span>);<br>    <br>    <span class="hljs-type">RadioButton</span> <span class="hljs-variable">rb_setFluid_DisplayMode</span> <span class="hljs-operator">=</span> cp5.addRadio(<span class="hljs-string">&quot;fluid_displayMode&quot;</span>).setGroup(group_fluid).setSize(<span class="hljs-number">80</span>,<span class="hljs-number">18</span>).setPosition(px, py+=(<span class="hljs-type">int</span>)(oy*<span class="hljs-number">1.5f</span>))<br>        .setSpacingColumn(<span class="hljs-number">2</span>).setSpacingRow(<span class="hljs-number">2</span>).setItemsPerRow(<span class="hljs-number">2</span>)<br>        .addItem(<span class="hljs-string">&quot;Density&quot;</span>    ,<span class="hljs-number">0</span>)<br>        .addItem(<span class="hljs-string">&quot;Temperature&quot;</span>,<span class="hljs-number">1</span>)<br>        .addItem(<span class="hljs-string">&quot;Pressure&quot;</span>   ,<span class="hljs-number">2</span>)<br>        .addItem(<span class="hljs-string">&quot;Velocity&quot;</span>   ,<span class="hljs-number">3</span>)<br>        .activate(DISPLAY_fluid_texture_mode);<br>    <span class="hljs-keyword">for</span>(Toggle toggle : rb_setFluid_DisplayMode.getItems()) toggle.getCaptionLabel().alignX(CENTER);<br>    <br>    cp5.addRadio(<span class="hljs-string">&quot;fluid_displayVelocityVectors&quot;</span>).setGroup(group_fluid).setSize(<span class="hljs-number">18</span>,<span class="hljs-number">18</span>).setPosition(px, py+=(<span class="hljs-type">int</span>)(oy*<span class="hljs-number">2.5f</span>))<br>        .setSpacingColumn(<span class="hljs-number">2</span>).setSpacingRow(<span class="hljs-number">2</span>).setItemsPerRow(<span class="hljs-number">1</span>)<br>        .addItem(<span class="hljs-string">&quot;Velocity Vectors&quot;</span>, <span class="hljs-number">0</span>)<br>        .activate(DISPLAY_FLUID_VECTORS ? <span class="hljs-number">0</span> : <span class="hljs-number">2</span>);<br>  &#125;<br>  <br>  <br>  <span class="hljs-comment">////////////////////////////////////////////////////////////////////////////</span><br>  <span class="hljs-comment">// GUI - DISPLAY</span><br>  <span class="hljs-comment">////////////////////////////////////////////////////////////////////////////</span><br>  <span class="hljs-type">Group</span> <span class="hljs-variable">group_display</span> <span class="hljs-operator">=</span> cp5.addGroup(<span class="hljs-string">&quot;display&quot;</span>);<br>  &#123;<br>    group_display.setHeight(<span class="hljs-number">20</span>).setSize(gui_w, <span class="hljs-number">50</span>)<br>    .setBackgroundColor(color(<span class="hljs-number">16</span>, <span class="hljs-number">180</span>)).setColorBackground(color(<span class="hljs-number">16</span>, <span class="hljs-number">180</span>));<br>    group_display.getCaptionLabel().align(CENTER, CENTER);<br>    <br>    px = <span class="hljs-number">10</span>; py = <span class="hljs-number">15</span>;<br>    <br>    cp5.addSlider(<span class="hljs-string">&quot;BACKGROUND&quot;</span>).setGroup(group_display).setSize(sx,sy).setPosition(px, py)<br>        .setRange(<span class="hljs-number">0</span>, <span class="hljs-number">255</span>).setValue(BACKGROUND_COLOR).plugTo(<span class="hljs-built_in">this</span>, <span class="hljs-string">&quot;BACKGROUND_COLOR&quot;</span>);<br>    <br>    cp5.addRadio(<span class="hljs-string">&quot;fluid_displayParticles&quot;</span>).setGroup(group_display).setSize(<span class="hljs-number">18</span>,<span class="hljs-number">18</span>).setPosition(px, py+=(<span class="hljs-type">int</span>)(oy*<span class="hljs-number">1.5f</span>))<br>        .setSpacingColumn(<span class="hljs-number">2</span>).setSpacingRow(<span class="hljs-number">2</span>).setItemsPerRow(<span class="hljs-number">1</span>)<br>        .addItem(<span class="hljs-string">&quot;display particles&quot;</span>, <span class="hljs-number">0</span>)<br>        .activate(DISPLAY_PARTICLES ? <span class="hljs-number">0</span> : <span class="hljs-number">2</span>);<br>  &#125;<br>  <br>  <br>  <span class="hljs-comment">////////////////////////////////////////////////////////////////////////////</span><br>  <span class="hljs-comment">// GUI - ACCORDION</span><br>  <span class="hljs-comment">////////////////////////////////////////////////////////////////////////////</span><br>  cp5.addAccordion(<span class="hljs-string">&quot;acc&quot;</span>).setPosition(gui_x, gui_y).setWidth(gui_w).setSize(gui_w, height)<br>    .setCollapseMode(Accordion.MULTI)<br>    .addItem(group_fluid)<br>    .addItem(group_display)<br>    .open(<span class="hljs-number">4</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>MyParticleSystem:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * </span><br><span class="hljs-comment"> * PixelFlow | Copyright (C) 2016 Thomas Diewald - http://thomasdiewald.com</span><br><span class="hljs-comment"> * </span><br><span class="hljs-comment"> * A Processing/Java library for high performance GPU-Computing (GLSL).</span><br><span class="hljs-comment"> * MIT License: https://opensource.org/licenses/MIT</span><br><span class="hljs-comment"> * </span><br><span class="hljs-comment"> */</span><br><br><br><br><span class="hljs-keyword">import</span> com.jogamp.opengl.GL2ES2;<br><span class="hljs-keyword">import</span> com.thomasdiewald.pixelflow.java.DwPixelFlow;<br><span class="hljs-keyword">import</span> com.thomasdiewald.pixelflow.java.dwgl.DwGLSLProgram;<br><span class="hljs-keyword">import</span> com.thomasdiewald.pixelflow.java.dwgl.DwGLTexture;<br><span class="hljs-keyword">import</span> com.thomasdiewald.pixelflow.java.fluid.DwFluid2D;<br><br><span class="hljs-keyword">import</span> processing.core.PConstants;<br><span class="hljs-keyword">import</span> processing.opengl.PGraphics2D;<br><br><br><span class="hljs-keyword">static</span> <span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyParticleSystem</span>&#123;<br>  <br>  <span class="hljs-keyword">public</span> DwGLSLProgram shader_particleSpawn;<br>  <span class="hljs-keyword">public</span> DwGLSLProgram shader_particleUpdate;<br>  <span class="hljs-keyword">public</span> DwGLSLProgram shader_particleRender;<br>  <br>  <span class="hljs-keyword">public</span> DwGLTexture.<span class="hljs-type">TexturePingPong</span> <span class="hljs-variable">tex_particles</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DwGLTexture</span>.TexturePingPong();<br>  <br>  DwPixelFlow context;<br>  <br>  <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> particles_x;<br>  <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> particles_y;<br>  <br>  <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> MAX_PARTICLES;<br>  <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-variable">ALIVE_LO</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-variable">ALIVE_HI</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-variable">ALIVE_PARTICLES</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>  <br>  <span class="hljs-comment">// a global factor, to comfortably reduce/increase the number of particles to spawn</span><br>  <span class="hljs-keyword">public</span> <span class="hljs-type">float</span> <span class="hljs-variable">spwan_scale</span> <span class="hljs-operator">=</span> <span class="hljs-number">1.0f</span>;<br>  <span class="hljs-keyword">public</span> <span class="hljs-type">float</span> <span class="hljs-variable">point_size</span>  <span class="hljs-operator">=</span> <span class="hljs-number">1.5f</span>;<br>  <br>  <span class="hljs-keyword">public</span> <span class="hljs-type">Param</span> <span class="hljs-variable">param</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Param</span>();<br>  <br>  <span class="hljs-keyword">static</span> <span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Param</span>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-type">float</span> <span class="hljs-variable">dissipation</span> <span class="hljs-operator">=</span> <span class="hljs-number">0.90f</span>;<br>    <span class="hljs-keyword">public</span> <span class="hljs-type">float</span> <span class="hljs-variable">inertia</span>     <span class="hljs-operator">=</span> <span class="hljs-number">0.20f</span>;<br>  &#125;<br>  <br>  <span class="hljs-keyword">public</span> <span class="hljs-title function_">MyParticleSystem</span><span class="hljs-params">()</span>&#123;<br>  &#125;<br>  <br>  <span class="hljs-keyword">public</span> <span class="hljs-title function_">MyParticleSystem</span><span class="hljs-params">(DwPixelFlow context, <span class="hljs-type">int</span> MAX_PARTICLES)</span>&#123;<br>    context.papplet.registerMethod(<span class="hljs-string">&quot;dispose&quot;</span>, <span class="hljs-built_in">this</span>);<br>    <span class="hljs-built_in">this</span>.resize(context, MAX_PARTICLES);<br>  &#125;<br>  <br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">dispose</span><span class="hljs-params">()</span>&#123;<br>    release();<br>  &#125;<br>  <br>  <span class="hljs-comment">// call this, when the object is not used any longer!</span><br>  <span class="hljs-comment">// OpenGL resources must be released to void memory leaks</span><br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">release</span><span class="hljs-params">()</span>&#123;<br>    tex_particles.release();<br>  &#125;<br>  <br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">resize</span><span class="hljs-params">(DwPixelFlow context, <span class="hljs-type">int</span> MAX_PARTICLES_WANTED)</span>&#123;<br>    particles_x = (<span class="hljs-type">int</span>) Math.ceil(Math.sqrt(MAX_PARTICLES_WANTED));<br>    particles_y = particles_x;<br>    resize(context, particles_x, particles_y);<br>  &#125;<br>  <br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">resize</span><span class="hljs-params">(DwPixelFlow context, <span class="hljs-type">int</span> num_particels_x, <span class="hljs-type">int</span> num_particels_y)</span>&#123;<br>    <span class="hljs-built_in">this</span>.context = context;<br>    <br>    context.begin();<br>    <br>    release(); <span class="hljs-comment">// just in case its not the first resize call</span><br>    <br>    MAX_PARTICLES = particles_x * particles_y;<br>    System.out.println(<span class="hljs-string">&quot;ParticelSystem: texture size = &quot;</span>+particles_x+<span class="hljs-string">&quot;/&quot;</span>+particles_y +<span class="hljs-string">&quot; (&quot;</span>+MAX_PARTICLES+<span class="hljs-string">&quot; particles)&quot;</span>);<br>    <br>    <span class="hljs-comment">// create shader</span><br>    <span class="hljs-type">String</span> <span class="hljs-variable">dir</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;data/&quot;</span>;<br>    shader_particleSpawn  = context.createShader(dir + <span class="hljs-string">&quot;particleSpawn.frag&quot;</span>);<br>    shader_particleUpdate = context.createShader(dir + <span class="hljs-string">&quot;particleUpdate.frag&quot;</span>);<br>    shader_particleRender = context.createShader(dir + <span class="hljs-string">&quot;particleRender.glsl&quot;</span>, dir + <span class="hljs-string">&quot;particleRender.glsl&quot;</span>);<br>    shader_particleRender.vert.setDefine(<span class="hljs-string">&quot;SHADER_VERT&quot;</span>, <span class="hljs-number">1</span>);<br>    shader_particleRender.frag.setDefine(<span class="hljs-string">&quot;SHADER_FRAG&quot;</span>, <span class="hljs-number">1</span>);<br><br>    <span class="hljs-comment">// allocate texture</span><br>    tex_particles.resize(context, GL2ES2.GL_RGBA32F, particles_x, particles_y, GL2ES2.GL_RGBA, GL2ES2.GL_FLOAT, GL2ES2.GL_NEAREST, <span class="hljs-number">4</span>, <span class="hljs-number">4</span>);<br><br>    context.end(<span class="hljs-string">&quot;ParticleSystem.resize&quot;</span>);<br> <br>    reset();  <span class="hljs-comment">// initialize particles</span><br>  &#125;<br>  <br>  <br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">reset</span><span class="hljs-params">()</span>&#123;<br><br>    ALIVE_LO = ALIVE_HI = ALIVE_PARTICLES = <span class="hljs-number">0</span>;<br><br>    <span class="hljs-comment">// clear to 0 first, just in case</span><br>    tex_particles.src.clear(<span class="hljs-number">0</span>);<br>    tex_particles.dst.clear(<span class="hljs-number">0</span>);<br>    <br>    <span class="hljs-comment">// additionally:</span><br>    <span class="hljs-comment">// spawning ALL particles at (-1,-1)</span><br>    <span class="hljs-comment">// this &quot;kind of&quot; clears the texture</span><br>    <span class="hljs-comment">// also, in the render-pass, the vertex gets clipped and no fragment is generated</span><br>    <span class="hljs-comment">// --&gt; speeds up everything</span><br>    spawn(<span class="hljs-literal">null</span>, -<span class="hljs-number">1</span>, -<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, particles_x *particles_y);<br>    <br>    ALIVE_LO = ALIVE_HI = ALIVE_PARTICLES = <span class="hljs-number">0</span>;<br>  &#125;<br>  <br><br>  <span class="hljs-comment">/**</span><br><span class="hljs-comment">   * </span><br><span class="hljs-comment">   * <span class="hljs-doctag">@param</span> px_norm normalized x spawn-position [0, 1]</span><br><span class="hljs-comment">   * <span class="hljs-doctag">@param</span> py_norm normalized y spawn-position [0, 1]</span><br><span class="hljs-comment">   * <span class="hljs-doctag">@param</span> count</span><br><span class="hljs-comment">   */</span><br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">spawn</span><span class="hljs-params">(DwFluid2D fluid, <span class="hljs-type">float</span> px, <span class="hljs-type">float</span> py, <span class="hljs-type">float</span> radius, <span class="hljs-type">int</span> count)</span>&#123;<br>    <br>    count = Math.round(count * spwan_scale);<br>    <br>    <span class="hljs-keyword">if</span>(ALIVE_HI == MAX_PARTICLES)&#123;<br>      System.out.println(<span class="hljs-string">&quot;all particles spawned, respawning from 0&quot;</span>);<br>      ALIVE_HI = <span class="hljs-number">0</span>;<br>    &#125;<br><br>    <span class="hljs-type">int</span> <span class="hljs-variable">spawn_lo</span> <span class="hljs-operator">=</span> ALIVE_HI; <br>    <span class="hljs-type">int</span> <span class="hljs-variable">spawn_hi</span> <span class="hljs-operator">=</span> Math.min(spawn_lo + count, MAX_PARTICLES); <br>    <span class="hljs-type">float</span> <span class="hljs-variable">noise</span> <span class="hljs-operator">=</span> (<span class="hljs-type">float</span>)(Math.random() * Math.PI);<br><br>    context.begin();<br>    context.beginDraw(tex_particles.dst);<br>    shader_particleSpawn.begin();<br>    <span class="hljs-keyword">if</span>(fluid != <span class="hljs-literal">null</span>)&#123;<br>      shader_particleSpawn.uniform2f(<span class="hljs-string">&quot;wh_viewport&quot;</span>, fluid.viewp_w, fluid.viewp_h);<br>    &#125;<br>    shader_particleSpawn.uniform1i(<span class="hljs-string">&quot;spawn_lo&quot;</span>, spawn_lo);<br>    shader_particleSpawn.uniform1i(<span class="hljs-string">&quot;spawn_hi&quot;</span>, spawn_hi);<br>    shader_particleSpawn.uniform2f(<span class="hljs-string">&quot;spawn_origin&quot;</span>, px, py);<br>    shader_particleSpawn.uniform1f(<span class="hljs-string">&quot;spawn_radius&quot;</span>, radius);<br>    shader_particleSpawn.uniform1f(<span class="hljs-string">&quot;noise&quot;</span>, noise);<br>    shader_particleSpawn.uniform2f(<span class="hljs-string">&quot;wh_particles&quot;</span> , particles_x, particles_y);<br>    shader_particleSpawn.uniformTexture(<span class="hljs-string">&quot;tex_particles&quot;</span> , tex_particles.src);<br>    shader_particleSpawn.drawFullScreenQuad();<br>    shader_particleSpawn.end();<br>    context.endDraw();<br>    context.end(<span class="hljs-string">&quot;ParticleSystem.spawn&quot;</span>);<br>    tex_particles.swap();<br>    <br>    ALIVE_HI = spawn_hi;<br>    ALIVE_PARTICLES = Math.max(ALIVE_PARTICLES, ALIVE_HI - ALIVE_LO);<br>  &#125;<br>  <br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">update</span><span class="hljs-params">(DwFluid2D fluid)</span>&#123;<br>    context.begin();<br>    context.beginDraw(tex_particles.dst);<br>    shader_particleUpdate.begin();<br>    shader_particleUpdate.uniform2f     (<span class="hljs-string">&quot;wh_fluid&quot;</span>     , fluid.fluid_w, fluid.fluid_h);<br>    shader_particleUpdate.uniform2f     (<span class="hljs-string">&quot;wh_particles&quot;</span> , particles_x, particles_y);<br>    shader_particleUpdate.uniform1f     (<span class="hljs-string">&quot;timestep&quot;</span>     , fluid.param.timestep);<br>    shader_particleUpdate.uniform1f     (<span class="hljs-string">&quot;rdx&quot;</span>          , <span class="hljs-number">1.0f</span> / fluid.param.gridscale);<br>    shader_particleUpdate.uniform1f     (<span class="hljs-string">&quot;dissipation&quot;</span>  , param.dissipation);<br>    shader_particleUpdate.uniform1f     (<span class="hljs-string">&quot;inertia&quot;</span>      , param.inertia);<br>    shader_particleUpdate.uniformTexture(<span class="hljs-string">&quot;tex_particles&quot;</span>, tex_particles.src);<br>    shader_particleUpdate.uniformTexture(<span class="hljs-string">&quot;tex_velocity&quot;</span> , fluid.tex_velocity.src);<br>    shader_particleUpdate.uniformTexture(<span class="hljs-string">&quot;tex_obstacles&quot;</span>, fluid.tex_obstacleC.src);<br>    shader_particleUpdate.drawFullScreenQuad();<br>    shader_particleUpdate.end();<br>    context.endDraw();<br>    context.end(<span class="hljs-string">&quot;ParticleSystem.update&quot;</span>);<br>    tex_particles.swap();<br>  &#125;<br>  <br><br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">render</span><span class="hljs-params">(PGraphics2D dst, <span class="hljs-type">int</span> background)</span>&#123;<br>    <span class="hljs-comment">// no need to run the vertex shader for particles that haven&#x27;t spawned yet</span><br>    <span class="hljs-type">int</span> <span class="hljs-variable">num_points_to_render</span> <span class="hljs-operator">=</span> ALIVE_PARTICLES;<br>    <span class="hljs-type">int</span> <span class="hljs-variable">w</span> <span class="hljs-operator">=</span> dst.width;<br>    <span class="hljs-type">int</span> <span class="hljs-variable">h</span> <span class="hljs-operator">=</span> dst.height;<br>    <br>    dst.beginDraw();<br>    dst.blendMode(PConstants.BLEND);<br>    <span class="hljs-keyword">if</span>(background == <span class="hljs-number">0</span>) dst.blendMode(PConstants.ADD); <span class="hljs-comment">// works nicely on black background</span><br>    <br>    context.begin();<br>    shader_particleRender.begin();<br>    shader_particleRender.uniform2f     (<span class="hljs-string">&quot;wh_viewport&quot;</span>, w, h);<br>    shader_particleRender.uniform2i     (<span class="hljs-string">&quot;num_particles&quot;</span>, particles_x, particles_y);<br>    shader_particleRender.uniform1f     (<span class="hljs-string">&quot;point_size&quot;</span>   , point_size);<br>    shader_particleRender.uniformTexture(<span class="hljs-string">&quot;tex_particles&quot;</span>, tex_particles.src);<br>    shader_particleRender.drawFullScreenPoints(num_points_to_render);<br>    shader_particleRender.end();<br>    context.end(<span class="hljs-string">&quot;ParticleSystem.render&quot;</span>);<br><br>    dst.endDraw();<br>  &#125;<br><br>  <br>&#125;<br></code></pre></td></tr></table></figure>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/2023zjude-10-36/categories/Interface-application-programming/" class="category-chain-item">Interface application programming</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Processing with Kinect&amp;GUI</div>
+      <div>https://nexmaker-fab.github.io/2023zjude-10-36/2024/01/01/kinectGUI/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Chenye Meng</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>January 1, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023zjude-10-36/2023/12/31/ProWithArduino/" title="Processing with Arduino">
+                        <span class="hidden-mobile">Processing with Arduino</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/2023zjude-10-36/js/events.js" ></script>
+<script  src="/2023zjude-10-36/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/2023zjude-10-36/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/2023zjude-10-36/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/2023zjude-10-36/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

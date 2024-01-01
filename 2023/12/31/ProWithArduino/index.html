@@ -1,0 +1,662 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/2023zjude-10-36/img/clock1.png">
+  <link rel="icon" href="/2023zjude-10-36/img/clock1.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Chenye Meng">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Connecting Processing with Arduino to Control RGB LEDIn this design, the color ratio of the three blocks - red, green, and blue - will be controlled in Processing. The corresponding color ratios will">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Processing with Arduino">
+<meta property="og:url" content="https://nexmaker-fab.github.io/2023zjude-10-36/2023/12/31/ProWithArduino/index.html">
+<meta property="og:site_name" content="10:36">
+<meta property="og:description" content="Connecting Processing with Arduino to Control RGB LEDIn this design, the color ratio of the three blocks - red, green, and blue - will be controlled in Processing. The corresponding color ratios will">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://nexmaker-fab.github.io/2023zjude-10-36/img/processing1/RGB%E5%9B%BE%E7%89%87.png">
+<meta property="og:image" content="https://nexmaker-fab.github.io/2023zjude-10-36/img/processing1/RGB%E7%BA%BF%E8%B7%AF%E8%BF%9E%E6%8E%A5.png">
+<meta property="og:image" content="https://nexmaker-fab.github.io/2023zjude-10-36/img/processing1/%E7%AB%AF%E5%8F%A3%E9%80%89%E6%8B%A9.jpg">
+<meta property="og:image" content="https://nexmaker-fab.github.io/2023zjude-10-36/img/processing1/processing%E8%BF%9E%E6%8E%A5.png">
+<meta property="og:image" content="https://nexmaker-fab.github.io/2023zjude-10-36/img/processing1/processing%E8%BF%90%E8%A1%8C.jpg">
+<meta property="og:image" content="https://nexmaker-fab.github.io/2023zjude-10-36/img/processing1/RGB%E5%8A%A8%E5%9B%BE%E5%B0%8F.gif">
+<meta property="og:image" content="https://nexmaker-fab.github.io/2023zjude-10-36/img/processing1/RGB%E7%BA%BF%E8%B7%AF%E8%BF%9E%E6%8E%A5.png">
+<meta property="article:published_time" content="2023-12-30T19:59:37.000Z">
+<meta property="article:modified_time" content="2023-12-30T20:45:26.632Z">
+<meta property="article:author" content="Chenye Meng">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://nexmaker-fab.github.io/2023zjude-10-36/img/processing1/RGB%E5%9B%BE%E7%89%87.png">
+  
+  
+  
+  <title>Processing with Arduino - 10:36</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/2023zjude-10-36/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/2023zjude-10-36/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/2023zjude-10-36/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"nexmaker-fab.github.io","root":"/2023zjude-10-36/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/2023zjude-10-36/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/2023zjude-10-36/js/utils.js" ></script>
+  <script  src="/2023zjude-10-36/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/2023zjude-10-36/">
+      <strong>10:36 Team</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/2023zjude-10-36/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/2023zjude-10-36/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/2023zjude-10-36/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/2023zjude-10-36/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/2023zjude-10-36/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Processing with Arduino"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-12-31 03:59" pubdate>
+          December 31, 2023 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.3k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          37 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Processing with Arduino</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="Connecting-Processing-with-Arduino-to-Control-RGB-LED"><a href="#Connecting-Processing-with-Arduino-to-Control-RGB-LED" class="headerlink" title="Connecting Processing with Arduino to Control RGB LED"></a>Connecting Processing with Arduino to Control RGB LED</h1><p>In this design, the color ratio of the three blocks - red, green, and blue - will be controlled in Processing. The corresponding color ratios will be input into the RGB LED, causing it to display the corresponding colors.</p>
+<h2 id="Hardware-Usage-and-Connection"><a href="#Hardware-Usage-and-Connection" class="headerlink" title="Hardware Usage and Connection"></a>Hardware Usage and Connection</h2><ol>
+<li>RGB LED</li>
+</ol>
+<p>The RGB LED is composed of red, green, and blue light mixed together. The maximum brightness value for each color is 255. By changing the mixing ratio of the three colors, many different colors can be obtained. Among the four pins of the RGB LED, three pins correspond to the red, green, and blue pins respectively, while the other pin is usually the VCC (Anode) or GND (Cathode) pin. The common cathode RGB LED is used in this experiment.<br><img src="/2023zjude-10-36/img/processing1/RGB%E5%9B%BE%E7%89%87.png" srcset="/2023zjude-10-36/img/loading.gif" lazyload></p>
+<ol start="2">
+<li>Hardware Connection</li>
+</ol>
+<p>This hardware setup uses an Arduino Uno, an RGB LED, a breadboard, three 220-ohm resistors, and several wires. The circuit diagram is shown below:<br><img src="/2023zjude-10-36/img/processing1/RGB%E7%BA%BF%E8%B7%AF%E8%BF%9E%E6%8E%A5.png" srcset="/2023zjude-10-36/img/loading.gif" lazyload></p>
+<h2 id="Connecting-Processing-with-Arduino"><a href="#Connecting-Processing-with-Arduino" class="headerlink" title="Connecting Processing with Arduino"></a>Connecting Processing with Arduino</h2><ol>
+<li>Relevant Settings in Processing</li>
+</ol>
+<p>Processing can be connected to Arduino to achieve bidirectional communication between the two. In this experiment, we will first draw the red, green, and blue color blocks in Processing, and control the RGB LED to emit the corresponding color light by adjusting the mixing ratio of the three colors. To connect Processing with Arduino, you must choose the correct port in Processing and make a declaration.</p>
+<p>First, determine the port of the connected Arduino board. We are using the “COM5” port here, as shown in the figure:<br><img src="/2023zjude-10-36/img/processing1/%E7%AB%AF%E5%8F%A3%E9%80%89%E6%8B%A9.jpg" srcset="/2023zjude-10-36/img/loading.gif" lazyload><br>The code required for connecting Processing with Arduino is shown below:<br><img src="/2023zjude-10-36/img/processing1/processing%E8%BF%9E%E6%8E%A5.png" srcset="/2023zjude-10-36/img/loading.gif" lazyload></p>
+<ol start="2">
+<li>Processing Code</li>
+</ol>
+<p>We drew the red, green, and blue color blocks in Processing and by adjusting the proportions of each block, you can see the mixed color in the lower square block. The Processing code is shown below:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><code class="hljs bash">import processing.serial.*;<br>Serial myPort;  // 用于与Arduino通信的串口对象<br>int redDisplay, greenDisplay, blueDisplay;  // 定义R,G,B 3个颜色分量显示的长度变量<br>int red, green, blue;                       // 定义R，G，B三种颜色分量的值的变量<br>void <span class="hljs-function"><span class="hljs-title">setup</span></span>() &#123;<br>  size(700, 500);<br>  <br>  // 与Arduino建立连接<br>  String portName = <span class="hljs-string">&quot;COM5&quot;</span>;<br>  myPort = new Serial(this, portName, 9600);<br>&#125;<br><br>void <span class="hljs-function"><span class="hljs-title">draw</span></span>() &#123;<br>  background(204);<br>  rectMode(CORNER);<br>  noFill();                              // 不填充颜色<br>  strokeWeight(2);                       // 三个进度条的边框厚度为2个像素<br>  stroke(255, 0, 0);                     // 描边颜色为红色<br>  rect(50, 100, 500, 50);                // 绘制红色分量进度条的边框<br>  stroke(0, 255, 0);                     // 描边颜色为绿色<br>  rect(50, 200, 500, 50);                // 绘制绿色分量进度条的边框<br>  stroke(0, 0, 255);                     // 描边颜色为蓝色<br>  rect(50, 300, 500, 50);                // 绘制蓝色分量进度条的边框<br>  fill(red, 0, 0);                       // 填充颜色为当前红色分量的值<br>  rect(50, 100, redDisplay, 50);         // 以当前红色分量的长度画出进度条<br>  fill(0, green, 0);                     // 填充颜色为当前绿色分量的值<br>  rect(50, 200, greenDisplay, 50);       // 以当前绿色分量的长度画出进度条<br>  fill(0, 0, blue);                      // 填充颜色为当前蓝色分量的值<br>  rect(50, 300, blueDisplay, 50);        // 以当前蓝色分量的长度画出进度条<br>  fill(red, green, blue);                // 以当前R,G,B分量合成的颜色值为填充，画出一个矩形<br>  rect(300, 400, 50, 50);<br>&#125;<br><br>void <span class="hljs-function"><span class="hljs-title">mouseClicked</span></span>() &#123;                         // 定义一个鼠标事件<br>  <span class="hljs-keyword">if</span> (mouseX &lt;= 550 &amp;&amp; mouseX &gt;= 50) &#123;<br>    <span class="hljs-keyword">if</span> (mouseY &lt;= 150 &amp;&amp; mouseY &gt;= 100) &#123;      // 当鼠标指针在该范围时，读取mouseX的值，映射到0~255，为红色颜色分量的值<br>      red = (int) map(mouseX, 50, 550, 0, 255);<br>      redDisplay = mouseX - 50;<br>      <br>      // 发送颜色分量值给Arduino<br>      myPort.write(red);    // 发送红色分量值<br>      myPort.write(green);  // 发送绿色分量值<br>      myPort.write(blue);   // 发送蓝色分量值<br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (mouseY &lt;= 250 &amp;&amp; mouseY &gt;= 200) &#123;<br>      green = (int) map(mouseX, 50, 550, 0, 255);<br>      greenDisplay = mouseX - 50;<br>      <br>      // 发送颜色分量值给Arduino<br>      myPort.write(red);    // 发送红色分量值<br>      myPort.write(green);  // 发送绿色分量值<br>      myPort.write(blue);   // 发送蓝色分量值<br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (mouseY &lt;= 350 &amp;&amp; mouseY &gt;= 300) &#123;<br>      blue = (int) map(mouseX, 50, 550, 0, 255);<br>      blueDisplay = mouseX - 50;<br>      <br>      // 发送颜色分量值给Arduino<br>      myPort.write(red);    // 发送红色分量值<br>      myPort.write(green);  // 发送绿色分量值<br>      myPort.write(blue);   // 发送蓝色分量值<br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>Arduino Code</li>
+</ol>
+<p>After connecting Processing with Arduino and connecting the RGB LED to the respective pins, you can adjust the color of the RGB LED. The Arduino code is shown below:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs bash">int redPin = 6;    // 连接到红色LED的引脚<br>int greenPin = 5; // 连接到绿色LED的引脚<br>int bluePin = 3;  // 连接到蓝色LED的引脚<br><br>void <span class="hljs-function"><span class="hljs-title">setup</span></span>() &#123;<br>  pinMode(redPin, OUTPUT);<br>  pinMode(greenPin, OUTPUT);<br>  pinMode(bluePin, OUTPUT);<br>  Serial.begin(9600);  // 初始化串口通信<br>&#125;<br><br>void <span class="hljs-function"><span class="hljs-title">loop</span></span>() &#123;<br>  <span class="hljs-keyword">if</span> (Serial.available() &gt;= 3) &#123;  // 等待接收3个字节的数据<br>    int redValue = Serial.<span class="hljs-built_in">read</span>();    // 读取红色分量值<br>    int greenValue = Serial.<span class="hljs-built_in">read</span>();  // 读取绿色分量值<br>    int blueValue = Serial.<span class="hljs-built_in">read</span>();   // 读取蓝色分量值<br>    <br>    // 控制LED的亮度<br>    analogWrite(redPin, redValue);<br>    analogWrite(greenPin, greenValue);<br>    analogWrite(bluePin, blueValue);<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>After compiling the code in both Processing and Arduino, you can click “run” in Processing to start the program, as shown in the figure:<br><img src="/2023zjude-10-36/img/processing1/processing%E8%BF%90%E8%A1%8C.jpg" srcset="/2023zjude-10-36/img/loading.gif" lazyload><br><img src="/2023zjude-10-36/img/processing1/RGB%E5%8A%A8%E5%9B%BE%E5%B0%8F.gif" srcset="/2023zjude-10-36/img/loading.gif" lazyload></p>
+<h2 id="Demonstration"><a href="#Demonstration" class="headerlink" title="Demonstration"></a>Demonstration</h2><p>The following figure shows the actual demonstration of the RGB LED changing its color based on the color ratio adjustment in Processing. By adjusting the corresponding ratio, different colors can be displayed.<br><img src="/2023zjude-10-36/img/processing1/RGB%E7%BA%BF%E8%B7%AF%E8%BF%9E%E6%8E%A5.png" srcset="/2023zjude-10-36/img/loading.gif" lazyload></p>
+<p>Reference article link for this section：</p>
+<p>RGB LED：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_41659040/article/details/104854670">https://blog.csdn.net/weixin_41659040/article/details/104854670</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/2023zjude-10-36/categories/Interface-application-programming/" class="category-chain-item">Interface application programming</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Processing with Arduino</div>
+      <div>https://nexmaker-fab.github.io/2023zjude-10-36/2023/12/31/ProWithArduino/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Chenye Meng</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>December 31, 2023</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023zjude-10-36/2024/01/01/kinectGUI/" title="Processing with Kinect&amp;GUI">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Processing with Kinect&amp;GUI</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023zjude-10-36/2023/12/31/arduinoFinal/" title="Open Source Projects Related to Final Project">
+                        <span class="hidden-mobile">Open Source Projects Related to Final Project</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/2023zjude-10-36/js/events.js" ></script>
+<script  src="/2023zjude-10-36/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/2023zjude-10-36/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/2023zjude-10-36/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/2023zjude-10-36/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
